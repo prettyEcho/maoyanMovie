@@ -1,0 +1,58 @@
+@orange: #dd4039;
+@black: #000000;
+@grey: #c7c7c7;
+@cityC: #7e7e7e;
+@movieInfo: #757575;
+@showInfo: #939393;
+@btn-blue: #54b1ec;
+@btn-red: #f0423b;
+@mark: #dfb717;  //金色
+@ver: #88b8cf; //浅蓝色
+@6e: #6e6e6e;
+
+@rem: 72rem; //rem color
+
+//triangle
+.triangle(@w, @t, @r, @b, @l){
+  width: 0;
+  height: 0;
+  border-width: @w;
+  border-style: solid;
+  border-color: @t @r @b @l;
+}
+
+.triangle-top(@w, @b){
+  .triangle(@w, transparent, transparent, @b, transparent);
+}
+
+.triangle-bottom(@w, @t){
+  .triangle(@w, @t, transparent, transparent, transparent);
+}
+
+.triangle-left(@w, @r){
+  .triangle(@w, transparent, @r, transparent, transparent);
+}
+
+.triangle-right(@w, @l){
+  .triangle(@w, transparent, transparent, transparent, @l);
+}
+
+//clearfix
+
+.clearfix{
+  zoom: 1;
+  &:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+
+//ellipsis
+.ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
