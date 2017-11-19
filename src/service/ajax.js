@@ -26,13 +26,16 @@ export default function getJson(options){
     //连接服务器
     xhr.open(config.type, config.url, true); //异步
 
+    //设置CORS请求方法
+    //xhr.setRequestHeader('Access-Control-Request-Method','GET');
+
     //是否为get
     if(config.type.toLowerCase() === 'get'){
       xhr.send();
     }else{
       //post
-      oAjax.setRequestHeader('content-type','application/x-www-form-urlencoded');
-      oAjax.send( config.data );
+      xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+      xhr.send( config.data );
     }
 
     xhr.onreadystatechange = handler;

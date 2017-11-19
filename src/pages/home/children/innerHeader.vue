@@ -10,7 +10,7 @@
       </ul>
     </nav>
     <div class="city">
-      <span class="local">{{locate}}</span>
+      <span class="local" @click="echo">{{locate}}</span>
     </div>
     <div class="search">
       <icon class="icon" type="search"></icon>
@@ -46,11 +46,15 @@
        return  /\hot/.test(this.$route.path) ? '热映' : '待映';
       }
     },
+    methods:{
+      echo(){
+        alert(222);
+      }
+    },
     components:{
       Icon
     },
     mounted(){
-      console.log(this.$route.path);
     }
   }
 </script>
@@ -61,6 +65,7 @@
 
   header{
     height: 130 / @rem;
+    background-color: #fff;
   }
   .nav{
     float: left;

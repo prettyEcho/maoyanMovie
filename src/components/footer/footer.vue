@@ -50,7 +50,8 @@
     width: 100%;
     padding: 25 / @rem 0;
     height: 180 / @rem;
-    background-color: #f7f6fb;
+    background-color: @body;
+    border-top: 1px solid @grey;
     .clearfix;
     .section{
       float: left;
