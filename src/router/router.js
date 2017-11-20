@@ -26,17 +26,20 @@ const routes = [
             {
                 path: '/hot',
                 name: 'hot',
-                component: Hot
+                component: Hot,
+                meta: {footerRequire: true}
             },
             {
                 path: '/await',
                 name: 'await',
-                component: Await
+                component: Await,
+                meta: {footerRequire: true}
             },
             {
                 path: '/city',
                 name: 'city',
-                component: City
+                component: City,
+                meta: {footerRequire: false}
             },
             {
                 path: '/me',
@@ -45,7 +48,8 @@ const routes = [
             },{
                 path: '/searchMovie',
                 name: 'searchMovie',
-                component: SearchMovie
+                component: SearchMovie,
+                meta: {footerRequire: false}
             },
             {
                 path: '/theater',

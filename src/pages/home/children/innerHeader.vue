@@ -10,10 +10,10 @@
       </ul>
     </nav>
     <div class="city">
-      <span class="local" @click="echo">{{locate}}</span>
+      <router-link class="local" :to="{name: 'city'}">{{locate.city}}</router-link>
     </div>
     <div class="search">
-      <icon class="icon" type="search"></icon>
+      <router-link :to="{name: 'searchMovie'}"> <icon class="icon" type="search"></icon></router-link>
     </div>
   </header>
 </template>
@@ -47,9 +47,7 @@
       }
     },
     methods:{
-      echo(){
-        alert(222);
-      }
+
     },
     components:{
       Icon
@@ -79,8 +77,8 @@
     line-height: 130 / @rem;
     text-align: center;
     margin-left: -100%;
-    color: @cityC;
     .local{
+      color: @cityC;
       &:after{
         content: '';
         position: relative;

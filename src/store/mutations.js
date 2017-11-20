@@ -5,7 +5,7 @@ import {
   GET_HOT,
   GET_LOCATE,
   GET_WISH,
-  CHANGE_MORE, GET_COMING_MORE
+  CHANGE_MORE, GET_COMING_MORE, GET_HOT_SEARCH, GET_CITIES
 } from "./mutation-types";
 
 export default {
@@ -40,7 +40,13 @@ export default {
 
   //储存当前城市
   [GET_LOCATE](state, val){
-    state.locate = val;
+    const json = JSON.parse(val);
+    state.locate = json.data;
+  },
+
+  //储存城市列表
+  [GET_CITIES](state, val){
+    state.cities = val;
   },
 
   //储存待映最受欢迎
@@ -88,5 +94,11 @@ export default {
     if(len <= end){
       state.coming.paging.hasMore = false;
     }
+  },
+
+  //获取热门搜索
+  [GET_HOT_SEARCH](state, val){
+    let json = JSON.parse(val);
+    state.hotSearch = json.data;
   }
 }

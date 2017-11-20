@@ -15,10 +15,9 @@ import {
 } from "./mutation-types"
 
 export default {
-    //获取城市当前城市
+    //获取当前城市
     async locate({dispatch, commit}){
-        commit('GET_LOCATE',await getLocate().city); //存储当前城市
-        await dispatch('hot');
+        commit('GET_LOCATE',await getLocate()); //存储当前城市
     },
 
     //获取热播列表
@@ -26,7 +25,7 @@ export default {
         const {limit,offset,ct} = {
             limit: state.hot.paging.limit,
             offset: state.hot.paging.offset,
-            ct: state.locate
+            ct: state.locate.city
         };
         const hots = await getHot(limit, offset, ct);
         commit('GET_HOT',hots); //存储热播列表
@@ -34,12 +33,12 @@ export default {
 
     //获取待映最受欢迎影片
     async wish({commit, state}){
-      commit('GET_WISH',await getWish());
+      commit('GET_WISH',await getWish(state.locate.ci));
     },
 
     //获取待映电影第一屏
-    coming({commit}){
-      getComing()
+    coming({commit, state}){
+      getComing(state.locate.ci)
         .then((val) => {
           commit('GET_COMING',val);
         })
@@ -55,7 +54,7 @@ export default {
 
       let ids = state.coming.movieIds.slice(start, end).join(',');
 
-      getComingMore(ids)
+      getComingMore(state.locate.ci, ids)
         .then((val) => {
           commit('GET_COMING_MORE',val);
         })

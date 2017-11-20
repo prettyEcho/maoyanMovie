@@ -8,7 +8,7 @@
             <router-view></router-view>
           </keep-alive>
         </transition>
-        <inner-footer slot="bottom"></inner-footer>
+        <inner-footer slot="bottom" v-if="$route.meta.footerRequire"></inner-footer>
       </view-box>
     </div>
 </template>
@@ -42,7 +42,8 @@ export default {
   methods: {
     ...mapActions([
         'hot',
-        'comingMore'
+        'comingMore',
+        'locate'
     ]),
     ...mapMutations([
       'CHANGE_LOADING',
@@ -119,6 +120,9 @@ export default {
     mHeader,
     innerFooter,
     animation
+  },
+  created(){
+   // this.locate();  请求当前城市失败
   },
   mounted(){
     this.getLoad(); //开机动画，加载更多

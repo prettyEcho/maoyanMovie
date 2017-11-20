@@ -10,7 +10,20 @@ const state = {
   loading: true, //开机动画开
   switch: false, //页面切换动画
   more: false, //加载更多
-  locate: '北京', //当前城市
+  locate: {   //当前城市
+    "country": "中国",
+    "marslat": 40.0677,
+    "province": "北京市",
+    "lng": 116.2977,
+    "city": "北京",
+    "district": "昌平区",
+    "marslng": 116.30379,
+    "detail": "龙域环路附近",
+    "lat": 40.066436,
+    "status": 2,
+    "ci": 1
+  },
+  cities: [], //城市列表
   nowPage: '电影', //当前尾页
   title: '猫眼电影', //标题
   hot: {
@@ -43,7 +56,8 @@ const state = {
       limit: 10,
       hasMore: true
     }
-  }
+  },
+  hotSearch: [], //热门搜索
 };
 
 export default new Vuex.Store({

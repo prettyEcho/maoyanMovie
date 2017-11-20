@@ -18,17 +18,6 @@ export const getHot = (limit, offset, ct) => getJson({
   data: `limit=${limit}&offset=${offset}&ct=${ct}` //默认为''
 });
 
-
-/*
-* 获取城市列表
-*
-* */
-
-export const getCities = () => getJson({
-  url: `${host}/echo/hostproxy/dianying/cities.json`
-});
-
-
 /*
 * 获取当前城市
 *
@@ -48,16 +37,16 @@ export const getLocate = () => getJson({
 *   offset：位置
 * */
 
-export const getWish = () => getJson({
+export const getWish = (ci) => getJson({
   url: `${host}/echo/mmdb/movie/v1/list/wish/order/coming.json`,
-  data: 'ci=1&limit=30&offset=0'
+  data: `ci=${ci}&limit=30&offset=0`
 });
 
 
 /*
 * 待映首次加载影片
 * @param:
-*   ci: 第几次,
+*   ci: 城市序列号,
 *   limit: 条目
 *
 * @return:
@@ -67,9 +56,9 @@ export const getWish = () => getJson({
 *   stid:
 * */
 
-export const getComing = () => getJson({
+export const getComing = (ci) => getJson({
   url: `${host}/echo/mmdb/movie/v2/list/rt/order/coming.json`,
-  data: 'ci=1&limit=10'
+  data: `ci=${ci}&limit=10`
 });
 
 
@@ -80,7 +69,16 @@ export const getComing = () => getJson({
 *   movieIds: 电影id集合
 * */
 
-export const getComingMore = (ids) => getJson({
+export const getComingMore = (ci, ids) => getJson({
   url: `${host}/echo/mmdb/movie/list/info.json`,
-  data: `ci=1&movieIds=${ids}`
+  data: `ci=${ci}&movieIds=${ids}`
+});
+
+/*
+* 获取热门搜索
+*
+* */
+
+export const getHotSearch = () => getJson({
+  url: `${host}/echo/hostproxy/mmdb/search/movie/hotmovie/list.json`
 });
