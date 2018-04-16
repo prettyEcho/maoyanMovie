@@ -4,7 +4,24 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const vuxLoader = require('vux-loader')
-const webpackConfig ={
+
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
+
+const createLintingRule = () => ({
+  test: /\.(js|vue)$/,
+  loader: 'eslint-loader',
+  enforce: 'pre',
+  include: [resolve('src'), resolve('test')],
+  options: {
+    formatter: require('eslint-friendly-formatter'),
+    emitWarning: !config.dev.showEslintErrorsInOverlay
+  }
+})
+
+const webpackConfig = {
+  context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
   },
@@ -16,7 +33,7 @@ const webpackConfig ={
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json','.less'],
+    extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
@@ -24,6 +41,7 @@ const webpackConfig ={
   },
   module: {
     rules: [
+      ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -32,25 +50,7 @@ const webpackConfig ={
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
-      },
-      {
-        test: /\.less$/,
-        loader: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader', options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'less-loader', options: {
-              sourceMap: true
-          }
-          }
-        ]
+        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -77,13 +77,23 @@ const webpackConfig ={
         }
       }
     ]
+  },
+  node: {
+    // prevent webpack from injecting useless setImmediate polyfill because Vue
+    // source contains it (although only uses it if it's native).
+    setImmediate: false,
+    // prevent webpack from injecting mocks to Node native modules
+    // that does not make sense for the client
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
   }
-};
-
-function resolve (dir) {
-  return path.join(__dirname, '..', dir)
 }
 
 module.exports = vuxLoader.merge(webpackConfig, {
   plugins: ['vux-ui']
-});
+})
+
+
