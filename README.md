@@ -2,20 +2,40 @@
 
 > A Vue.js project
 
-## Build Setup
+### 功能
 
-``` bash
-# install dependencies
-npm install
+* 电影
 
-# serve with hot reload at localhost:8080
-npm run dev
+- [x] 热映电影
+- [x] 待映电影
+- [] 影片详情
+- [] 购票 - 影院选择
+- [] 购票 - 日期选择
+- [] 购票 - 支付   
+- [] 添加喜欢影片 🐶 
+- [] 地址定位 🐶
+- [x] 选择城市
+- [x] 电影搜索 -- 取消功能、下拉bug
+- [] 电影评论 
 
-# build for production with minification
-npm run build
+* 电影院
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+- [] 电影院列表 
+- [] 电影院搜索
+- [] 电影院详情
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+* 我的
+
+- [] 登录 🐶
+- [] 注册 🐶
+- [] 我的订单 🐶 （购票添加到我的订单）
+- [] 优惠券 🐶
+- [] 影院会员卡 🐶
+- [] 想看的电影 🐶
+- [] 看过的电影 🐶
+
+* 其他
+
+- [] 历史返回
+
+
