@@ -20,13 +20,13 @@ module.exports = {
         pathRewrite: {  // 重写
           '^/api/': '/'
       } */
-      'http://localhost:8080/echo': {
+      /* 'http://localhost:8080/echo': {
         target: 'https://wx.maoyan.com',
         changeOrigin: true,
         pathRewrite: {
             '^/echo/': '/'
         }
-      }
+      } */
     },
 
     // Various Dev Server settings
