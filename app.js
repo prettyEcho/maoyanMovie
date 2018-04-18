@@ -19,7 +19,6 @@ app.use(session({
   }
 }));
 
-
 // post
 app.use(bodyParser.json()); // 处理application/json
 app.use(bodyParser.urlencoded({
@@ -30,10 +29,21 @@ app.use(bodyParser.urlencoded({
 app.set('view engine', 'html');
 app.engine('html', require('hbs').__express);
 
+// 跨域
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+})
+
 // router
 const index = require('./routes/index')
+const proxy = require('./routes/proxy')
 
 app.use('/index', index)
+app.use('/proxy', proxy)
 
 
 // catch 404 and forward to error handler
