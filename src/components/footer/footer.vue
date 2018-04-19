@@ -1,9 +1,9 @@
 <template>
   <footer class="footer">
-    <div class="section" v-for="item in footers">
-      <div class="center">
-        <div class="top" :class="[item.title === page ? item.iconNow : item.icon]"></div>
-        <div class="bottom" :class="[item.title === page ? 'red' : '']">{{item.title}}</div>
+    <div class="section" v-for="(item, index) in footers" :key="item.id">
+      <div class="center" @click="change(index)">
+        <div class="top" :class="[item.id === nowPage ? item.iconNow : item.icon]"></div>
+        <div class="bottom" :class="[item.id === nowPage ? 'red' : '']">{{item.title}}</div>
       </div>
     </div>
   </footer>
@@ -11,21 +11,25 @@
 
 <script>
   export default {
-    name: 'footer',
+    name: 'e-footer',
     data(){
       return{
+        nowPage: 1,
         footers:[
           {
+            id: 1,
             title: '电影',
-            icon: 'movie',
-            iconNow: 'movie-now'
+            icon: 'hot',
+            iconNow: 'hot-now'
           },
           {
+            id: 2,
             title: '影院',
             icon: 'theatre',
             iconNow: 'theatre-now'
           },
           {
+            id: 3,
             title: '我的',
             icon: 'user',
             iconNow: 'user-now'
@@ -33,9 +37,11 @@
         ]
       }
     },
-    computed: {
-      page(){
-        return this.$store.state.nowPage;
+    methods: {
+      change(index) {
+        let path = this.footers[index]['icon'];
+        this.nowPage = index + 1;
+        this.$router.push({ path: path})
       }
     }
   }
@@ -73,11 +79,11 @@
       .red{
         color: #f0423b !important;
       }
-      .movie{
+      .hot{
         background: url('../../images/sprite.png') no-repeat -70 / @rem 0;
         background-size: 280 / @rem 210 / @rem;
       }
-      .movie-now{
+      .hot-now{
         background: url('../../images/sprite.png') no-repeat 0 0;
         background-size: 280 / @rem 210 / @rem;
       }

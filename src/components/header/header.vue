@@ -7,7 +7,7 @@
 <script>
   import { XHeader } from "vux"
   export default{
-    name: "header",
+    name: "e-header",
     props: {
       myTitle: String
     },
@@ -16,7 +16,7 @@
     },
     methods:{
       goBack: function(){
-        alert(1);
+        this.$router.back();
       }
     }
   }
