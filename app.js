@@ -8,6 +8,10 @@ const app = express();
 
 // session
 const session = require('express-session');
+// cookie
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
 
 app.use(session({
   name: 'echo-session', // response和request中session id的名字
@@ -39,10 +43,10 @@ app.use((req, res, next) => {
 })
 
 // router
-const index = require('./routes/index')
 const proxy = require('./routes/proxy')
+const user = require('./routes/user')
 
-app.use('/index', index)
+app.use('/user', user)
 app.use('/proxy', proxy)
 
 
