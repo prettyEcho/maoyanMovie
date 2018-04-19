@@ -8,7 +8,7 @@
             <router-view></router-view>
           </keep-alive>
         </transition>
-        <inner-footer slot="bottom" v-if="$route.meta.footerRequire"></inner-footer>
+        <inner-footer slot="bottom"></inner-footer>
       </view-box>
     </div>
 </template>
@@ -80,6 +80,7 @@ export default {
 
         //判断是否到底
         if(disT === offsetT && that.hasMore){
+          console.log(1);
           let newT = disT + 30;
           that.CHANGE_MORE(true);  //显示加载更多...
           that.$refs.viewBox.scrollTo(newT);  //增加显示更多的空间
@@ -155,5 +156,9 @@ export default {
 
   .home-enter, .home-leave-to{
     opacity: 0;
+  }
+
+  .body {
+     background-color: #f7f6fb;
   }
 </style>
