@@ -4,6 +4,6 @@
         "port": "3306",
         "username": "root",
         "password": "Mysql123#",
-        "database": "test"
+        "database": "maoyan"
     }
 }
