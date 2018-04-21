@@ -23,7 +23,6 @@ const state = {
     "status": 2,
     "ci": 1
   },
-  cities: [], //城市列表
   nowPage: '电影', //当前尾页
   title: '猫眼电影', //标题
   hot: {
@@ -38,7 +37,6 @@ const state = {
     stids: [], //当前电影分类细节
     total: 0, //电影总数
   },
-  citys: [], //城市列表
   wish: {
     coming: [], //最受欢迎
     paging: {
@@ -57,7 +55,12 @@ const state = {
       hasMore: true
     }
   },
+  cities: [], //城市列表
+  recentCities: ['北京'], //最近访问城市
   hotSearch: [], //热门搜索
+  searchMovie: {}, //搜索关键词电影结果
+  searchTheater: {}, //搜索关键词电影院结果
+  point: '' //正确关键词提示
 };
 
 export default new Vuex.Store({

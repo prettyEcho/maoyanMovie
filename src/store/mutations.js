@@ -5,7 +5,12 @@ import {
   GET_HOT,
   GET_LOCATE,
   GET_WISH,
-  CHANGE_MORE, GET_COMING_MORE, GET_HOT_SEARCH, GET_CITIES
+  CHANGE_MORE,
+  GET_COMING_MORE,
+  GET_HOT_SEARCH,
+  GET_CITIES,
+  RECENT_CITIES,
+  SEARCH_KEYWORD
 } from "./mutation-types";
 
 export default {
@@ -40,8 +45,7 @@ export default {
 
   //储存当前城市
   [GET_LOCATE](state, val){
-    const json = JSON.parse(val);
-    state.locate = json.data;
+    state.locate = val;
   },
 
   //储存城市列表
@@ -100,5 +104,28 @@ export default {
   [GET_HOT_SEARCH](state, val){
     let json = JSON.parse(val);
     state.hotSearch = json.data;
+  },
+
+  //最近访问城市
+  [RECENT_CITIES](state, val){
+    if(state.recentCities.length >=2){
+      state.recentCities.splice(1,1);
+    }
+    state.recentCities.unshift(val);
+  },
+
+  //搜索关键词电影结果
+  [SEARCH_KEYWORD](state, val){
+    const json = JSON.parse(val);
+    state.point = json.correctionV2;
+    state.searchMovie = {}; //清空
+    state.searchTheater = {}; //清空
+    for(let i of json.data){
+      if(i.type === 0){
+        state.searchMovie = i;
+      }else if(i.type === 2){
+        state.searchTheater = i;
+      }
+    }
   }
 }
