@@ -1,0 +1,26 @@
+[2018-04-19T18:20:42.217] [INFO] dbLogin - echo is login success
+[2018-04-19T18:45:13.452] [INFO] fileLogin - echo is register success
+[2018-04-19T18:48:15.448] [INFO] fileLogin - echo is register success
+[2018-04-19T18:48:47.744] [INFO] fileLogin - echo is register success
+[2018-04-19T18:49:25.430] [INFO] fileLogin - echo is register success
+[2018-04-19T18:50:35.510] [INFO] fileLogin - echo is register success
+[2018-04-19T18:53:24.691] [INFO] fileLogin - echo is register success
+[2018-04-19T18:53:35.306] [INFO] fileLogin - echo is login success
+[2018-04-19T18:53:42.960] [ERROR] fileLogin - echo is logining, but password:12 is error
+[2018-04-19T18:54:11.790] [INFO] fileLogin - echo is login success
+[2018-04-19T18:54:33.248] [INFO] fileLogin - echo is login success
+[2018-04-19T18:54:44.871] [INFO] fileLogin - echo is logout success
+[2018-04-19T18:55:23.501] [INFO] fileLogin - echo is login success
+[2018-04-19T18:55:29.170] [INFO] fileLogin - cherry is register success
+[2018-04-21T18:07:44.766] [INFO] fileLogin - cherry is login success
+[2018-04-21T18:12:15.012] [INFO] fileLogin - echo is login success
+[2018-04-21T18:13:47.816] [INFO] fileLogin - echo is login success
+[2018-04-21T18:15:41.576] [INFO] fileLogin - echo is login success
+[2018-04-21T18:17:01.569] [INFO] fileLogin - echo is login success
+[2018-04-21T18:20:47.171] [INFO] fileLogin - echo is login success
+[2018-04-21T18:24:13.208] [INFO] fileLogin - echo is login success
+[2018-04-21T18:26:53.962] [INFO] fileLogin - echo is login success
+[2018-04-21T18:29:27.411] [INFO] fileLogin - echo is login success
+[2018-04-21T20:52:42.906] [INFO] fileLogin - echo is login success
+[2018-04-21T21:15:09.966] [INFO] fileLogin - echo is login success
+[2018-04-21T21:17:16.362] [INFO] fileLogin - echo is login success
