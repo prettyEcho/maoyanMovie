@@ -1,8 +1,9 @@
 const express = require('express')
 const bodyParser = require("body-parser")
-const debug = require('debug')('echo:app')
 const hbs = require('hbs')
 const path = require('path')
+const config = require('config')
+const debug = require('debug')('echo:app')
 
 const app = express();
 
@@ -44,10 +45,24 @@ app.use((req, res, next) => {
 
 // router
 const proxy = require('./routes/proxy')
-const user = require('./routes/user')
-
-app.use('/user', user)
 app.use('/proxy', proxy)
+
+// mode router
+const mode = config.get('MODE');
+if( mode !== 'db' && mode !== 'file' ) {
+  debug('please set the correct mode');
+}
+
+if( mode === 'db' ) {
+  debug('you are using the database mode')
+  const duser = require('./routes/duser')
+  app.use('/duser', duser)
+}else{
+  debug('you are using the file mode')  
+  const fuser = require('./routes/fuser')
+  app.use('/fuser', fuser)
+}
+
 
 
 // catch 404 and forward to error handler
