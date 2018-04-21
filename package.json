@@ -1,7 +1,7 @@
 {
-  "name": "full-stack-template",
+  "name": "maoyanMovie",
   "version": "1.0.0",
-  "description": "a full-stack-template based on webpack",
+  "description": "a full-stack item based on express and vue",
   "author": "prettyEcho <15732029828@163.com>",
   "private": true,
   "scripts": {
@@ -23,7 +23,9 @@
     "fastclick": "^1.0.6",
     "hbs": "^4.0.1",
     "http-proxy-middleware": "^0.18.0",
+    "log4js": "^2.5.3",
     "mysql2": "^1.5.3",
+    "pm2": "^2.10.2",
     "sequelize": "^4.37.6",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
