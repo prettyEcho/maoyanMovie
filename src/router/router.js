@@ -1,23 +1,28 @@
 import Vue from "vue" //导入vue
 import Router from "vue-router" //导入vue-router
 import App from "../App.vue" //导入App
+import { request } from "https";
 
 //按需加载组件
 const Hot = r => require.ensure([],() => r(require('../pages/home/hot'),'hot'));
 const Await = r => require.ensure([],() => r(require('../pages/home/await'),'await'));
 const City = r => require.ensure([],() => r(require('../pages/city/city'),'city'));
-const Me = r => require.ensure([],() => r(require('../pages/me/me'),'me'));
+const User = r => require.ensure([],() => r(require('../pages/user/user'),'user'));
+const Main = r => require.ensure([],() => r(require('../pages/user/children/main'),'user'));
+const Login = r => require.ensure([],() => r(require('../pages/user/children/login'),'user'));
+const Coupon = r => require.ensure([],() => r(require('../pages/user/children/coupon'),'user'));
+const Order = r => require.ensure([],() => r(require('../pages/user/children/order'),'user'));
+const Viewed = r => require.ensure([],() => r(require('../pages/user/children/viewed'),'user'));
+const Vip = r => require.ensure([],() => r(require('../pages/user/children/vip'),'user'));
+const Wanted = r => require.ensure([],() => r(require('../pages/user/children/wanted'),'user'));
 const SearchMovie = r => require.ensure([],() => r(require('../pages/searchMoive/searchMovie'),'searchMovie'));
 const Theater = r => require.ensure([],() => r(require('../pages/theater/theater'),'theater'));
-
 
 Vue.use(Router); //使用Router
 
 const routes = [
-    {
-        path: "/",
-        component: App, //顶级组件:index.html
-        children: [  //二级组件: App
+
+
             //当请求地址为空时，转移到hot页
             {
                 path: '',
@@ -42,9 +47,46 @@ const routes = [
                 meta: {footerRequire: false}
             },
             {
-                path: '/me',
-                name: 'me',
-                component: Me
+                path: '/user',
+                component: User,
+                children: [
+                    {
+                        path: '',
+                        name: 'main',
+                        component: Main
+                    },
+                    {
+                        path: 'login',
+                        name: 'login',
+                        component: Login
+                    },
+                    {
+                        path: 'coupon',
+                        name: 'coupon',
+                        component: Coupon
+                    },
+                    {
+                        path: 'order',
+                        name: 'order',
+                        component: Order
+                    },
+                    {
+                        path: 'viewed',
+                        name: 'viewed',
+                        component: Viewed
+                    },
+                    {
+                        path: 'wanted',
+                        name: 'wanted',
+                        component: Wanted
+                    },
+                    {
+                        path: 'vip',
+                        name: 'vip',
+                        component: Vip
+                    },
+                    
+                ]
             },{
                 path: '/searchMovie',
                 name: 'searchMovie',
@@ -56,8 +98,7 @@ const routes = [
                 name: 'theater',
                 component: Theater
             }
-        ]
-    }
+     
 ];
 
 export default new Router({
