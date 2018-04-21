@@ -1,0 +1,37 @@
+{
+    "echo": [
+        {
+            "username": "echo",
+            "name": "钢铁侠",
+            "cat": "123",
+            "desc": "你好",
+            "showInfo": "天天的",
+            "img": "http://",
+            "preSale": "sfaf",
+            "wish": "lajfla",
+            "mk": "1200分"
+        },
+        {
+            "username": "echo",
+            "name": "钢铁侠",
+            "cat": "123",
+            "desc": "你好",
+            "showInfo": "天天的",
+            "img": "http://",
+            "preSale": "sfaf",
+            "wish": "lajfla",
+            "mk": "1200分"
+        },
+        {
+            "username": "echo",
+            "name": "钢铁侠",
+            "cat": "123",
+            "desc": "你好",
+            "showInfo": "天天的",
+            "img": "http://",
+            "preSale": "sfaf",
+            "wish": "lajfla",
+            "mk": "1200分"
+        }
+    ]
+}
