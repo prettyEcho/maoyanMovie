@@ -1,7 +1,17 @@
 import getJson from "./ajax"
+ 
+const phost = process.env.PHOST; // proxy host
+const controlHost = process.env.MODE;
 
-const host = 'http://www.echo.com:8080'; //产品模式时为空
+if( controlHost !== 'db' && controlHost !== 'file' ) {
+  debug('please set the correct control host');
+}
 
+if( controlHost === 'db') {
+  var uhost = process.env.DHOST; // db host
+}else{
+  var uhost = process.env.FHOST; // file host
+} 
 
 /*
 * 获取热播剧
@@ -14,7 +24,7 @@ const host = 'http://www.echo.com:8080'; //产品模式时为空
 
 export const getHot = (limit, offset, ct) => getJson({
   type: 'get', //默认为get
-  url: `${host}/echo/mmdb/movie/v2/list/hot.json`,
+  url: `${phost}/mmdb/movie/v2/list/hot.json`,
   data: `limit=${limit}&offset=${offset}&ct=${ct}` //默认为''
 });
 
@@ -24,7 +34,7 @@ export const getHot = (limit, offset, ct) => getJson({
 * */
 
 export const getLocate = () => getJson({
-  url: `${host}/echo/hostproxy/locate/v2/rgeo`,
+  url: `${phost}/hostproxy/locate/v2/rgeo`,
   data: 'coord=40.0684,116.3036,1'
 });
 
@@ -38,7 +48,7 @@ export const getLocate = () => getJson({
 * */
 
 export const getWish = (ci) => getJson({
-  url: `${host}/echo/mmdb/movie/v1/list/wish/order/coming.json`,
+  url: `${phost}/mmdb/movie/v1/list/wish/order/coming.json`,
   data: `ci=${ci}&limit=30&offset=0`
 });
 
@@ -57,12 +67,13 @@ export const getWish = (ci) => getJson({
 * */
 
 export const getComing = (ci) => getJson({
-  url: `${host}/echo/mmdb/movie/v2/list/rt/order/coming.json`,
+  url: `${phost}/mmdb/movie/v2/list/rt/order/coming.json`,
   data: `ci=${ci}&limit=10`
 });
 
 
 /*
+
 * 待映下拉加载
 * @param:
 *   ci: 第几次,
@@ -70,7 +81,7 @@ export const getComing = (ci) => getJson({
 * */
 
 export const getComingMore = (ci, ids) => getJson({
-  url: `${host}/echo/mmdb/movie/list/info.json`,
+  url: `${phost}/mmdb/movie/list/info.json`,
   data: `ci=${ci}&movieIds=${ids}`
 });
 
@@ -80,5 +91,15 @@ export const getComingMore = (ci, ids) => getJson({
 * */
 
 export const getHotSearch = () => getJson({
-  url: `${host}/echo/hostproxy/mmdb/search/movie/hotmovie/list.json`
+  url: `${phost}/hostproxy/mmdb/search/movie/hotmovie/list.json`
 });
+
+/*
+* 搜索关键词电影结果
+*
+* */
+
+export const searchKeyword = (keyword,ci) => getJson({
+  url: `${phost}//hostproxy/mmdb/search/integrated/keyword/list.json`,
+  data: `keyword=${keyword}&almtype=1&iscorrected=false&stype=-1&ci=${ci}`
+})
