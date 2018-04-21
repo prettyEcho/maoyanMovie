@@ -4,13 +4,23 @@ import Vue from 'vue'
 import router from './router/router'
 import store from './store/index'
 import "./script/rem"  //rem转换
+import FastClick from 'fastclick'
+import App from './App.vue'
+
+if ('addEventListener' in document) {
+  document.addEventListener('DOMContentLoaded', function() {
+    FastClick.attach(document.body);
+  }, false);
+}
 
 Vue.config.productionTip = false;
 
 
-
 /* eslint-disable no-new */
 new Vue({
+  el: '#app',
   router,
-  store
-}).$mount("#app");
+  store,
+  template: "<App/>",
+  components: { App }
+});
