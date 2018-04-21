@@ -27,18 +27,20 @@
       }
     },
     updated(){
+      this.$nextTick(function () {
         //初始化body宽度
         let oWrap = document.querySelector('.recent'),
           oBody = document.querySelector('.recent-body'),
           oLi = oBody.querySelectorAll('.item'),style,
           aLi = oLi[0];
-          style = getStyle(aLi);
+        style = getStyle(aLi);
         oBody.style.width = Math.ceil(parseFloat(style.width) * oLi.length) + 'px';
 
-      //确定ul左边临界值
-        this.startX = oBody.getBoundingClientRect().left - document.documentElement.clientLeft || 2; //解决ie7的left多出2px的bug
+        //确定ul左边临界值
+        this.startX = oBody.getBoundingClientRect().left - document.documentElement.clientLeft;
         //确定ul右边临界值
         this.endX = oWrap.getBoundingClientRect().width - oBody.getBoundingClientRect().width;
+      })
     },
     computed: {
       ...mapState({
@@ -52,13 +54,14 @@
       move(ev){
         let obj, //当前手指对象
             target, //ul对象
-            left, //ul左边距
-            right; //ul右边距
-
+            left; //ul左边距
+        //TODO:bug:startX和endX值错误
         obj = ev.changedTouches[0];
         target = document.querySelector('.recent-body');
-        left = target.getBoundingClientRect().left - document.documentElement.clientLeft || 2; //解决ie7的left多出2px的bug
+        left = target.getBoundingClientRect().left - document.documentElement.clientLeft;
+        console.log(`差值:${target.getBoundingClientRect().left}`)
         left = left  + obj.clientX - this.disX;
+        console.log(`left:${left} ===== startX:${this.startX}`);
         //临界判断
         if(left > this.startX){
           target.style.left = this.startX;

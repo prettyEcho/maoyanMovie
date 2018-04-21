@@ -1,12 +1,23 @@
 <template>
   <section class="searchMovie">
     <section class="btn-wrap">
-      <input type="text" class="search" autofocus placeholder="找影视剧、影院"><icon class="icon" type="search"></icon>
+      <input type="text" class="search" autofocus placeholder="找影视剧、影院" v-model="keyword"><icon class="icon" type="search"></icon>
       <span class="cancel">取消</span>
     </section>
-    <section class="hot-wrap">
-      <h3 class="title">热门搜索</h3>
-      <button class="movie" v-for="item in hotSearch" :key="item.id">{{item.nm}}</button>
+    <section class="body-wrap">
+      <!--热门搜索-->
+      <section v-if="false" class="hot-wrap">
+        <h3 class="title">热门搜索</h3>
+        <button class="movie" v-for="item in hotSearch" :key="item.id">{{item.nm}}</button>
+      </section>
+      <!--提示搜索-->
+      <section v-if="point" class="point">
+        您要找的是不是<mark class="mark">{{point}}</mark>
+      </section>
+      <!--电影／电视剧-->
+      <child-movie v-if="JSON.stringify(searchMovie) !== '{}'" :movie="searchMovie"></child-movie>
+      <!--电影院-->
+      <!--<child-theater v-if="JSON.stringify(searchTheater) === '{}'" :theater="searchTheater"></child-theater>-->
     </section>
   </section>
 </template>
@@ -14,18 +25,26 @@
 
 <script>
   import {mapState,mapMutations} from 'vuex'
-  import {getHotSearch} from '../../service/getData'
+  import {getHotSearch, searchKeyword} from '../../service/getData'
   import {Icon} from 'vux';
+  import childMovie from "./children/childMovie"
+  import childTheater from "./children/childTheater"
 
   export default{
     name: 'searchMovie',
+    data(){
+      return {
+        keyword: '' //关键词
+      }
+    },
     created(){
+      //搜索热门电影
       getHotSearch()
         .then((val) => {
           this.GET_HOT_SEARCH(val);
       })
         .catch((e) => {
-          console.log(e);
+          console.error(e);
         })
     },
     beforeMount(){
@@ -33,17 +52,40 @@
     },
     computed:{
       ...mapState({
-        hotSearch: state => state.hotSearch  //热门搜索
-      })
+        hotSearch: state => state.hotSearch,  //热门搜索
+        locate: state => state.locate, //当前城市
+        searchMovie: state => state.searchMovie, //电影
+        searchTheater: state => state.searchTheater, //电影院
+        point: state => state.point //关键词提示
+      }),
     },
     methods:{
       ...mapMutations([
         'CHANGE_TITLE',
-        'GET_HOT_SEARCH'
+        'GET_HOT_SEARCH',
+        'SEARCH_KEYWORD'
       ])
     },
     components:{
-      Icon
+      Icon,
+      childMovie,
+      childTheater
+    },
+    watch:{
+      keyword(newVal){
+        if(newVal){
+          //搜索关键词
+          setTimeout(() => {
+            searchKeyword(newVal, this.locate.ci)
+              .then((val) => {
+                this.SEARCH_KEYWORD(val);
+              })
+              .catch((e) => {
+                console.error(e);
+              })
+          },500);
+        }
+      }
     }
   }
 </script>
@@ -56,7 +98,8 @@
     height: 100%;
     background-color: @f5;
     .btn-wrap{
-      position: relative;
+      position: fixed;
+      top: 130/@rem;
       display: flex;
       padding: 20/@rem 0 20/@rem 25/@rem;
       border-bottom: 1px solid #e5e5e5;
@@ -95,6 +138,24 @@
         padding: 20/@rem 25/@rem;
         border: 0;
         background-color: @f5;
+      }
+    }
+    .body-wrap{
+      margin-top: 130/@rem;
+      .point{
+        margin-bottom: 25/@rem;
+        padding-left: 35/@rem;
+        height: 116/@rem;
+        line-height: 116/@rem;
+        border-bottom: 1px solid #e5e5e5;
+        color: #858585;
+        font-size: 38/@rem;
+        .mark{
+          padding: 2px;
+          color: @orange;
+          font-size: 38/@rem;
+          background-color: #ffeaf9;
+        }
       }
     }
   }
