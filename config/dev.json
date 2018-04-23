@@ -6,5 +6,5 @@
         "password": "Mysql123#",
         "database": "maoyan"
     },
-    "MODE": "file" // db or file
+    "MODE": "db" // db or file
 }
