@@ -3,9 +3,13 @@ const bodyParser = require("body-parser")
 const hbs = require('hbs')
 const path = require('path')
 const config = require('config')
+const favicon = require('serve-favicon')
 const debug = require('debug')('echo:app')
 
 const app = express();
+
+// favicon
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) 
 
 // session
 const session = require('express-session');
@@ -57,7 +61,7 @@ if( mode === 'db' ) {
   debug('you are using the database mode')
   const duser = require('./routes/duser')
   app.use('/duser', duser)
-}else{
+}else if( mode === 'file' ) {
   debug('you are using the file mode')  
   const fuser = require('./routes/fuser')
   app.use('/fuser', fuser)
