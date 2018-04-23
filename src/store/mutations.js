@@ -10,7 +10,8 @@ import {
   GET_HOT_SEARCH,
   GET_CITIES,
   RECENT_CITIES,
-  SEARCH_KEYWORD
+  SEARCH_KEYWORD,
+  CHANGE_USER
 } from "./mutation-types";
 
 export default {
@@ -127,5 +128,10 @@ export default {
         state.searchTheater = i;
       }
     }
+  },
+
+  // 更改user
+  [CHANGE_USER](state, val) {
+    state.user = val;
   }
 }

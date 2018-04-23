@@ -100,6 +100,25 @@ export const getHotSearch = () => getJson({
 * */
 
 export const searchKeyword = (keyword,ci) => getJson({
-  url: `${phost}//hostproxy/mmdb/search/integrated/keyword/list.json`,
+  url: `${phost}/hostproxy/mmdb/search/integrated/keyword/list.json`,
   data: `keyword=${keyword}&almtype=1&iscorrected=false&stype=-1&ci=${ci}`
+})
+
+/**
+ * 登录
+ * 
+ * @param {string} username 
+ * @param {string or number} password 
+ */
+export const Login = (username, password) => getJson({
+  url: `${uhost}/login`,
+  data: `username=${username}&password=${password}`
+})
+
+/**
+ * 注销
+ * 
+ */
+export const Logout = () => getJson({
+  url: `${uhost}/logout`
 })

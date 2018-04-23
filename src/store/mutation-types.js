@@ -11,3 +11,4 @@ export const GET_COMING_MORE = 'GET_COMING_MORE';  //储存待映更多
 export const GET_HOT_SEARCH = 'GET_HOT_SEARCH';  //获取热门搜索
 export const RECENT_CITIES = 'RECENT_CITIES';  //获取热门搜索
 export const SEARCH_KEYWORD = 'SEARCH_KEYWORD';  //搜索关键词结果
+export const CHANGE_USER = 'CHANGE_USER';  //搜索关键词结果

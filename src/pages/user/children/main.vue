@@ -2,7 +2,8 @@
   <section class="e-user">
       <div class="u-header">
         <img src="../../../images/user.jpg" alt="user" class="u-img">
-        <span class="u-word" @click="login">{{user}}</span>
+        <span class="u-word" v-if="!username" @click="login">用户登录</span>
+        <span class="u-word" v-if="username" @click="logout">{{username}}</span>
       </div>
       <group>
         <cell class="e-cell" title="我的订单" link="/user/order" is-link></cell>
@@ -17,20 +18,43 @@
 </template>
 
 <script>
-import { Group, Cell, CellBox } from 'vux'
+import { Group, Cell, CellBox } from 'vux';
+import { Logout } from '../../../service/getData'
 
 export default {
   name: 'user',
   data() {
     return {
-      user: '用户登录'
+     
+    }
+  },
+  computed: {
+    username() {
+      return this.$cookies.get('username');
     }
   },
   methods:{
     login() {
-        console.log(this.$router)
         this.$router.push({name: 'login'})
+    },
+    logout() {
+      let con = confirm('是否要注销');
+      if( con ) {
+        Logout().then(result => {
+          let data = JSON.parse( result );
+          if( data.code ) {
+            // 清理store
+            //this.$store.commit('CHANGE_USER', '');
+          }else{
+            alert('注销失败');
+          }
+        })
+      }
     }
+  },
+  mouted() {
+    // 获取username
+    this.username = this.$cookies.get('username');       
   },
   components: {
     Group,
