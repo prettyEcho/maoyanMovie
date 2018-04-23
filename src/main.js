@@ -7,6 +7,10 @@ import "./script/rem"  //rem转换
 import FastClick from 'fastclick'
 import App from './App.vue'
 
+// cookie
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
+
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
