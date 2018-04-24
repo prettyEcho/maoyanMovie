@@ -122,3 +122,27 @@ export const Login = (username, password) => getJson({
 export const Logout = () => getJson({
   url: `${uhost}/logout`
 })
+
+/**
+ * 获取订单
+ * 
+ */
+export const GetOrder = () => getJson({
+  url: `${uhost}/getOrder`
+})
+
+/**
+ * 获取优惠券
+ * 
+ */
+export const GetConpon = () => getJson({
+  url: `${uhost}/getConpon`
+})
+
+/**
+ * 获取vip
+ * 
+ */
+export const GetVip = () => getJson({
+  url: `${uhost}/getVip`
+})
