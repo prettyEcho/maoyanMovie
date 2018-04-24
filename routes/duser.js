@@ -71,7 +71,7 @@ router.get('/login', (req, res, next) => {
     // 注册
     if (created) {
       req.session.username = user.dataValues.username;
-      res.cookie('username', user.dataValues.username);
+      res.cookie('username', user.dataValues.username, { maxAge: 18000000 });
 
       // log
       lLogger.info(`${username} is register success`);
@@ -86,7 +86,7 @@ router.get('/login', (req, res, next) => {
     // 登录
     if (user.dataValues.password === password) {
       req.session.username = user.dataValues.username;
-      res.cookie('username', user.dataValues.username);
+      res.cookie('username', user.dataValues.username, { maxAge: 18000000 });  // 5小时
 
       // log
       lLogger.info(`${username} is login success`);
@@ -122,7 +122,7 @@ router.get('/logout', (req, res, next) => {
 
   // 删除cookie
   delete req.cookies.username;
-  res.cookie('username', '');
+  res.cookie('username', '', { maxAge: 18000000 });
 
   //删除session
   delete req.session.username;

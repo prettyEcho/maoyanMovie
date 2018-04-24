@@ -73,7 +73,7 @@ router.get('/login', (req, res, next) => {
       // 成功
       if (data[username]['password'] === password) {
         req.session.username = username;
-        res.cookie('username', username);
+        res.cookie('username', username, { domain: 'localhost', maxAge: 18000000});
 
         // log
         lLogger.info(`${username} is login success`);
@@ -109,7 +109,7 @@ router.get('/login', (req, res, next) => {
       }
 
       req.session.username = username;
-      res.cookie('username', username);
+      res.cookie('username', username, { domain: 'localhost', maxAge: 18000000});
 
       // log
       lLogger.info(`${username} is register success`);
