@@ -53,11 +53,9 @@ export default {
 
         if( this.username && this.password ) {
             Login(this.username, this.password).then(result => {
-                console.log(result);
                 let data = JSON.parse( result );
-                if( data.code ) {
+                if( data.code == 1 ) {
                     this.$router.push({ path: '/user'} );
-                    // this.$store.commit('CHANGE_USER', this.username);
                 }else{
                     alert( data.msg );
                 }

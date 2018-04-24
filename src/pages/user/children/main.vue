@@ -25,17 +25,15 @@ export default {
   name: 'user',
   data() {
     return {
-     
+     username: ''
     }
   },
   computed: {
-    username() {
-      return this.$cookies.get('username');
-    }
+    
   },
   methods:{
     login() {
-        this.$router.push({name: 'login'})
+      this.$router.push({name: 'login'})
     },
     logout() {
       let con = confirm('是否要注销');
@@ -43,8 +41,7 @@ export default {
         Logout().then(result => {
           let data = JSON.parse( result );
           if( data.code ) {
-            // 清理store
-            //this.$store.commit('CHANGE_USER', '');
+            this.username = this.$cookies.get('username');
           }else{
             alert('注销失败');
           }
@@ -52,7 +49,10 @@ export default {
       }
     }
   },
-  mouted() {
+  watch: {
+    
+  },
+  mounted() {
     // 获取username
     this.username = this.$cookies.get('username');       
   },
