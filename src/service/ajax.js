@@ -29,6 +29,9 @@ export default function getJson(options){
     //设置CORS请求方法
     //xhr.setRequestHeader('Access-Control-Request-Method','GET');
 
+    // 设置跨域携带cookie
+    xhr.withCredentials = true;
+
     //是否为get
     if(config.type.toLowerCase() === 'get'){
       xhr.send();
