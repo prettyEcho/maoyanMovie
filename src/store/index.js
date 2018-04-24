@@ -61,7 +61,6 @@ const state = {
   searchMovie: {}, //搜索关键词电影结果
   searchTheater: {}, //搜索关键词电影院结果
   point: '', //正确关键词提示
-  user: '' // 用户名
 };
 
 export default new Vuex.Store({

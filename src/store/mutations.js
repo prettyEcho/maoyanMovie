@@ -130,8 +130,4 @@ export default {
     }
   },
 
-  // 更改user
-  [CHANGE_USER](state, val) {
-    state.user = val;
-  }
 }
