@@ -187,6 +187,12 @@ router.get('/getOrder', (req, res, next) => {
         data: JSON.stringify(data[username])
       })
       return res.end()
+    }else {
+      res.send({
+        code: 2,
+        data: []
+      })
+      return res.end()
     }
 
   })
@@ -424,6 +430,12 @@ router.get('/getWish', (req, res, next) => {
         data: JSON.stringify(data[username])
       })
       return res.end()
+    }else {
+      res.send({
+        code: 2,
+        data: []
+      })
+      return res.end()
     }
 
   })
@@ -548,6 +560,12 @@ router.get('/getViewed', (req, res, next) => {
         code: 1,
         msg: '获取成功',
         data: JSON.stringify(data[username])
+      })
+      return res.end()
+    }else {
+      res.send({
+        code: 2,
+        data: []
       })
       return res.end()
     }
