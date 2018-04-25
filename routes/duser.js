@@ -153,7 +153,7 @@ router.get('/getOrder', (req, res, next) => {
     if (!result) {
       res.send({
         code: 2,
-        data: {}
+        data: []
       })
       return res.end()
     }
