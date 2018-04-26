@@ -6,7 +6,7 @@
 
 <script>
   export default{
-    name: 'switch'
+    name: 'mao-switch'
   }
 </script>
 
