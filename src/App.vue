@@ -61,7 +61,7 @@ export default {
       },1500);
     },
     scroll(){     //加载更多
-      const scrollBody =  this.$refs.viewBox.getScrollBody(),
+      const scrollBody =  this.$refs.viewBox.getScrollBody(), // 滑动块的wrap
             that = this;
 
       scrollBody.addEventListener('scroll', scrollFn, false);
@@ -71,16 +71,18 @@ export default {
             bodyHeight,
             offsetT,
             disT;
-        const scroller = scrollBody.firstElementChild;
-          //获取数据
+        const scroller = scrollBody.firstElementChild; // 滑动块
+
+          // 获取数据
+          // 实际高度
         bodyHeight = parseFloat(getStyle(scrollBody).height) - parseFloat(getStyle(scrollBody).paddingBottom);
         scrollerHeight = parseFloat(getStyle(scroller).height);
-        disT = Math.round(scrollerHeight - bodyHeight);
-        offsetT = that.$refs.viewBox.getScrollTop();
-
+        disT = Math.round(scrollerHeight - bodyHeight); // 高度差
+        offsetT = that.$refs.viewBox.getScrollTop(); 
+        
+        if( offsetT == 0 ) { return ;}
         //判断是否到底
         if(disT === offsetT && that.hasMore){
-          console.log(1);
           let newT = disT + 30;
           that.CHANGE_MORE(true);  //显示加载更多...
           that.$refs.viewBox.scrollTo(newT);  //增加显示更多的空间
