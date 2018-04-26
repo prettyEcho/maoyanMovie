@@ -14,7 +14,7 @@ const Coupon = r => require.ensure([],() => r(require('../pages/user/children/co
 const Order = r => require.ensure([],() => r(require('../pages/user/children/order'),'user'));
 const Viewed = r => require.ensure([],() => r(require('../pages/user/children/viewed'),'user'));
 const Vip = r => require.ensure([],() => r(require('../pages/user/children/vip'),'user'));
-const Wanted = r => require.ensure([],() => r(require('../pages/user/children/wanted'),'user'));
+const Wish = r => require.ensure([],() => r(require('../pages/user/children/wish'),'user'));
 const SearchMovie = r => require.ensure([],() => r(require('../pages/searchMoive/searchMovie'),'searchMovie'));
 const Theater = r => require.ensure([],() => r(require('../pages/theater/theater'),'theater'));
 
@@ -76,9 +76,9 @@ const routes = [
                         component: Viewed
                     },
                     {
-                        path: 'wanted',
-                        name: 'wanted',
-                        component: Wanted
+                        path: 'wish',
+                        name: 'wish',
+                        component: Wish
                     },
                     {
                         path: 'vip',

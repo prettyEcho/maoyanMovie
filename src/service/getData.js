@@ -87,7 +87,7 @@ export const getComingMore = (ci, ids) => getJson({
 
 /*
 * 获取热门搜索
-*
+* https://wx.maoyan.com/hostproxy/mmdb/search/movie/hotmovie/list.json
 * */
 
 export const getHotSearch = () => getJson({
@@ -129,6 +129,22 @@ export const Logout = () => getJson({
  */
 export const GetOrder = () => getJson({
   url: `${uhost}/getOrder`
+})
+
+/**
+ * 获取想看
+ * 
+ */
+export const GetWish = () => getJson({
+  url: `${uhost}/getWish`
+})
+
+/**
+ * 获取看过
+ * 
+ */
+export const GetViewed = () => getJson({
+  url: `${uhost}/getViewed`
 })
 
 /**
