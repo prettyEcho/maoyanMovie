@@ -2,11 +2,11 @@
   <section class="searchMovie">
     <section class="btn-wrap">
       <input type="text" class="search" autofocus placeholder="找影视剧、影院" v-model="keyword"><icon class="icon" type="search"></icon>
-      <span class="cancel">取消</span>
+      <span class="cancel" @click="cancel">取消</span>
     </section>
     <section class="body-wrap">
       <!--热门搜索-->
-      <section v-if="false" class="hot-wrap">
+      <section class="hot-wrap">
         <h3 class="title">热门搜索</h3>
         <button class="movie" v-for="item in hotSearch" :key="item.id">{{item.nm}}</button>
       </section>
@@ -64,7 +64,10 @@
         'CHANGE_TITLE',
         'GET_HOT_SEARCH',
         'SEARCH_KEYWORD'
-      ])
+      ]),
+      cancel() {
+        this.keyword = '';
+      }
     },
     components:{
       Icon,
@@ -103,6 +106,8 @@
       display: flex;
       padding: 20/@rem 0 20/@rem 25/@rem;
       border-bottom: 1px solid #e5e5e5;
+      background-color: #fff;
+      z-index: 1000;
       .search{
         width: 905/@rem;
         height: 80/@rem;

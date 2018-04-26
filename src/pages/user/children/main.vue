@@ -11,7 +11,7 @@
         <cell class="e-cell" title="影院会员卡" link="/user/vip" is-link></cell>
       </group>
       <group>
-        <cell class="e-cell" title="想看的电影" link="/user/wanted" is-link></cell>
+        <cell class="e-cell" title="想看的电影" link="/user/wish" is-link></cell>
         <cell class="e-cell" title="看过的电影" link="/user/viewed" is-link></cell>
       </group>
     </section>

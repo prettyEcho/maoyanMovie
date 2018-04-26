@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import { GetViewed } from "../../../service/getData"
+import { GetWish } from "../../../service/getData"
     export default {
-        name: 'viewed',
+        name: 'wish',
         data() {
             return {
                 list: [],
@@ -35,7 +35,7 @@ import { GetViewed } from "../../../service/getData"
             }
         },
         created() {
-            GetViewed().then(result => {
+            GetWish().then(result => {
                 let data = JSON.parse(result);
                 if( data.code == 1 ) {
                     this.list = JSON.parse( data.data );
