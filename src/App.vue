@@ -3,10 +3,8 @@
       <animation v-if="loading"></animation>
       <view-box v-if="!loading" class="body" ref="viewBox">
         <m-header slot="header" :myTitle="myTitle"></m-header>
-        <transition name="home" mode="out-in">
-          <keep-alive>
+        <transition name="home" mode="out-in">         
             <router-view></router-view>
-          </keep-alive>
         </transition>
         <inner-footer slot="bottom"></inner-footer>
       </view-box>

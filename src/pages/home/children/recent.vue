@@ -32,7 +32,7 @@ export default {
       swiperOption: {
         notNextTick: true,
         // freeMode: true,
-        //slidesPerView: 30,
+        slidesPerView: 30,
         // autoplay: 100,
         // loop: false,
         // resistance: true
