@@ -63,7 +63,7 @@
 
 - [x] 历史返回
 
-**注：带小狗标志的为我自增的后端功能**
+**注：带小狗标志的为我自增的后端功能**
 
 ### 项目启动
 
@@ -93,14 +93,14 @@ pm2 deploy ecosystem.config.js production update
 ### 截图展示
 
 #### 首页
-<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan1.gif" width="365" height="619"/> <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan5.png" width="365" height="619"/> 
+<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan5.png" width="365" height="619"/>  <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan1.gif" width="365" height="619"/> 
 
 #### 城市选择页
-<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan2.gif" width="365" height="619"/> <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan6.png" width="365" height="619"/> 
+<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan6.png" width="365" height="619"/>  <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan2.gif" width="365" height="619"/> 
 
 #### 搜索页
-<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan3.gif" width="365" height="619"/> <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan7.png" width="365" height="619"/> 
+<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan7.png" width="365" height="619"/>  <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan3.gif" width="365" height="619"/> 
 
 #### 我的
-<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan4.gif" width="365" height="619"/> <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan8.png" width="365" height="619"/> 
+<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan8.png" width="365" height="619"/>  <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan4.gif" width="365" height="619"/> 
 
