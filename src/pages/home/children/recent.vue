@@ -2,8 +2,8 @@
   <section class="recent">
     <h3 class="title">近期最受欢迎</h3>
     <!-- slides -->
-    <swiper class="recent-body" :options="swiperOption">
-      <swiper-slide class="item" v-for="item in coming" :key="item.id" ref="mySwiper">
+    <swiper class="recent-body" :options="swiperOption" ref="mySwiper">
+      <swiper-slide class="item" v-for="item in coming" :key="item.id" @click="swiperClick">
         <p class="love empty"></p>
         <img :src="item.img.replace(/\/w.h/,'')" alt="item.nm" class="img">
         <h3 class="name">{{item.nm}}</h3>
@@ -28,13 +28,21 @@ export default {
       disX: 0, //当前手指距离左侧的距离
       startX: 0, //ul左边临界值
       endX: 0, //ul右边临界值
+      swiperLength: 0,
       swiperOption: {
-        slidesPerView: 10
+        notNextTick: true,
+        // freeMode: true,
+        //slidesPerView: 30,
+        // autoplay: 100,
+        // loop: false,
+        // resistance: true
       }
     };
   },
   updated() {
-    this.$nextTick(function() {
+
+    /* this.$nextTick(function() {
+      this.swiperLength = this.coming.length; 
       //初始化body宽度
       let oWrap = document.querySelector(".recent"),
         oBody = document.querySelector(".recent-body"),
@@ -53,14 +61,24 @@ export default {
       this.endX =
         oWrap.getBoundingClientRect().width -
         oBody.getBoundingClientRect().width;
-    });
+    }); */
+  },
+  mounted(){
+    console.log('this is current swiper instance object', this.swiper);
   },
   computed: {
     ...mapState({
       coming: state => state.wish.coming
-    })
+    }),
+    swiper() {
+      return this.$refs.mySwiper.swiper
+    }
   },
-  methods: {},
+  methods: {
+    swiperClick() {
+
+    }
+  },
   components: {
     swiper,
     swiperSlide
@@ -95,7 +113,7 @@ export default {
     .item {
       position: relative;
       float: left;
-      width: 275 / @rem;
+      width: 275 / @rem; 
       padding-right: 30 / @rem;
       &:after {
         content: "";
