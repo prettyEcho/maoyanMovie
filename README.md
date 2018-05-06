@@ -92,9 +92,7 @@ pm2 deploy ecosystem.config.js production update
 
 ### 截图展示
 
-<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan1.gif" width="300" height="619"/> 
-<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan2.gif" width="300" height="619"/> 
+<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan1.gif" width="350" height="619"/> <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan2.gif" width="350" height="619"/> 
 
-<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan3.gif" width="350" height="619"/> 
-<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan4.gif" width="350" height="619"/> 
+<img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan3.gif" width="350" height="619"/> <img src="https://github.com/prettyEcho/maoyanMovie/blob/master/src/images/maoyan4.gif" width="350" height="619"/> 
 
