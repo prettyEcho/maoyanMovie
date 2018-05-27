@@ -9,7 +9,7 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "dev:end": "cross-env NODE_ENV='dev' DEBUG=echo:* node ./bin/www",
+    "dev:end": "cross-env NODE_ENV='dev' DEBUG=echo:* node-dev ./bin/www",
     "deploy": "DEBUG=echo:* node ./bin/www"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "sequelize": "^4.37.6",
     "serve-favicon": "^2.5.0",
     "vue": "^2.5.2",
+    "vue-awesome-swiper": "^3.1.3",
     "vue-cookies": "^1.5.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
