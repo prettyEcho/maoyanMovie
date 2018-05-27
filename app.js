@@ -40,12 +40,13 @@ app.engine('html', require('hbs').__express);
 
 // 跨域
 app.use((req, res, next) => {
-  debug(req.hostname);
   res.header("Access-Control-Allow-Origin", "http://localhost:8080");
   res.header("Access-Control-Allow-Credentials", true);
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Cache-Control', 'Max-age=0');  // 强缓存
   next();
 })
 
