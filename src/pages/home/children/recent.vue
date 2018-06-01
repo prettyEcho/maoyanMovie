@@ -10,39 +10,35 @@
         <p class="wish">{{item.wish}}人想看</p>
         <p class="date">{{item.comingTitle.split(' ').join('').replace(/周\W/,'')}}</p>
       </swiper-slide>
-    </swiper> 
+    </swiper>
   </section>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import getStyle from "../../../script/getStyle";
-import "swiper/dist/css/swiper.css";
+import { mapState } from 'vuex'
+import getStyle from '../../../script/getStyle'
+import 'swiper/dist/css/swiper.css'
 
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
-  name: "recent",
-  data() {
+  name: 'recent',
+  data () {
     return {
-      disX: 0, //当前手指距离左侧的距离
-      startX: 0, //ul左边临界值
-      endX: 0, //ul右边临界值
+      disX: 0, // 当前手指距离左侧的距离
+      startX: 0, // ul左边临界值
+      endX: 0, // ul右边临界值
       swiperLength: 0,
       swiperOption: {
-        notNextTick: true,
-        // freeMode: true,
-        slidesPerView: 30,
-        // autoplay: 100,
-        // loop: false,
-        // resistance: true
+        slidesPerView: 4,
+        spaceBetween: 12
       }
-    };
+    }
   },
-  updated() {
+  updated () {
 
     /* this.$nextTick(function() {
-      this.swiperLength = this.coming.length; 
+      this.swiperLength = this.coming.length;
       //初始化body宽度
       let oWrap = document.querySelector(".recent"),
         oBody = document.querySelector(".recent-body"),
@@ -63,19 +59,19 @@ export default {
         oBody.getBoundingClientRect().width;
     }); */
   },
-  mounted(){
-    console.log('this is current swiper instance object', this.swiper);
+  mounted () {
+    console.log('this is current swiper instance object', this.swiper)
   },
   computed: {
     ...mapState({
       coming: state => state.wish.coming
     }),
-    swiper() {
+    swiper () {
       return this.$refs.mySwiper.swiper
     }
   },
   methods: {
-    swiperClick() {
+    swiperClick () {
 
     }
   },
@@ -83,7 +79,7 @@ export default {
     swiper,
     swiperSlide
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -107,24 +103,7 @@ export default {
     font-size: 40 / @rem;
   }
   .recent-body {
-    position: absolute;
-    left: 32 / @rem;
-    .clearfix;
     .item {
-      position: relative;
-      float: left;
-      width: 275 / @rem; 
-      padding-right: 30 / @rem;
-      &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 85 / @rem;
-        height: 85 / @rem;
-        background-color: #6d8293;
-        opacity: 0.5;
-      }
       .love {
         position: absolute;
         top: 15 / @rem;
