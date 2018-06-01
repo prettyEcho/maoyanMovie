@@ -1,6 +1,6 @@
 <template>
     <section class="wrap">
-    <p class="word" v-if="show">空空如也</p>        
+    <p class="word" v-if="show">空空如也</p>
     <ul class="scroller" v-else>
       <li v-for="item in list" class="item">
         <section class="center">
@@ -20,34 +20,34 @@
           <button :class="[item.preSale ? 'blue' : 'red', 'btn']" >{{item.preSale ? '预售' : '购票'}}</button>
         </section>
       </li>
-    </ul>   
+    </ul>
     </section>
 </template>
 
 <script>
-import { GetWish } from "../../../service/getData"
-    export default {
-        name: 'wish',
-        data() {
-            return {
-                list: [],
-                show: false
-            }
-        },
-        created() {
-            GetWish().then(result => {
-                let data = JSON.parse(result);
-                if( data.code == 1 ) {
-                    this.list = JSON.parse( data.data );
-                }else if( data.code == 0 ){
-                    alert( data.msg );
-                    this.$router.push({ path: '/user' })
-                }else{
-                    this.show = true;
-                }
-            })
-        }
+import { GetWish } from '../../../service/getData'
+export default {
+  name: 'wish',
+  data () {
+    return {
+      list: [],
+      show: false
     }
+  },
+  created () {
+    GetWish().then(result => {
+      let data = JSON.parse(result)
+      if (data.code == 1) {
+        this.list = JSON.parse(data.data)
+      } else if (data.code == 0) {
+        alert(data.msg)
+        this.$router.push({ path: '/user' })
+      } else {
+        this.show = true
+      }
+    })
+  }
+}
 </script>
 
 <style scoped lang="less">

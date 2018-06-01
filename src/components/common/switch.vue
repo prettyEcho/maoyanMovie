@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default{
-    name: 'mao-switch'
-  }
+export default{
+  name: 'mao-switch'
+}
 </script>
 
 <style lang="less" scoped>

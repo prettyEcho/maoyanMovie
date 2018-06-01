@@ -22,77 +22,75 @@
   </section>
 </template>
 
-
 <script>
-  import {mapState,mapMutations} from 'vuex'
-  import {getHotSearch, searchKeyword} from '../../service/getData'
-  import {Icon} from 'vux';
-  import childMovie from "./children/childMovie"
-  import childTheater from "./children/childTheater"
+import {mapState, mapMutations} from 'vuex'
+import {getHotSearch, searchKeyword} from '../../service/getData'
+import {Icon} from 'vux'
+import childMovie from './children/childMovie'
+import childTheater from './children/childTheater'
 
-  export default{
-    name: 'searchMovie',
-    data(){
-      return {
-        keyword: '' //关键词
-      }
-    },
-    created(){
-      //搜索热门电影
-      getHotSearch()
-        .then((val) => {
-          this.GET_HOT_SEARCH(val);
+export default{
+  name: 'searchMovie',
+  data () {
+    return {
+      keyword: '' // 关键词
+    }
+  },
+  created () {
+    // 搜索热门电影
+    getHotSearch()
+      .then((val) => {
+        this.GET_HOT_SEARCH(val)
       })
-        .catch((e) => {
-          console.error(e);
-        })
-    },
-    beforeMount(){
-      this.CHANGE_TITLE(`搜索`);  //改变标题
-    },
-    computed:{
-      ...mapState({
-        hotSearch: state => state.hotSearch,  //热门搜索
-        locate: state => state.locate, //当前城市
-        searchMovie: state => state.searchMovie, //电影
-        searchTheater: state => state.searchTheater, //电影院
-        point: state => state.point //关键词提示
-      }),
-    },
-    methods:{
-      ...mapMutations([
-        'CHANGE_TITLE',
-        'GET_HOT_SEARCH',
-        'SEARCH_KEYWORD'
-      ]),
-      cancel() {
-        this.keyword = '';
-      }
-    },
-    components:{
-      Icon,
-      childMovie,
-      childTheater
-    },
-    watch:{
-      keyword(newVal){
-        if(newVal){
-          //搜索关键词
-          setTimeout(() => {
-            searchKeyword(newVal, this.locate.ci)
-              .then((val) => {
-                this.SEARCH_KEYWORD(val);
-              })
-              .catch((e) => {
-                console.error(e);
-              })
-          },500);
-        }
+      .catch((e) => {
+        console.error(e)
+      })
+  },
+  beforeMount () {
+    this.CHANGE_TITLE(`搜索`) // 改变标题
+  },
+  computed: {
+    ...mapState({
+      hotSearch: state => state.hotSearch, // 热门搜索
+      locate: state => state.locate, // 当前城市
+      searchMovie: state => state.searchMovie, // 电影
+      searchTheater: state => state.searchTheater, // 电影院
+      point: state => state.point // 关键词提示
+    })
+  },
+  methods: {
+    ...mapMutations([
+      'CHANGE_TITLE',
+      'GET_HOT_SEARCH',
+      'SEARCH_KEYWORD'
+    ]),
+    cancel () {
+      this.keyword = ''
+    }
+  },
+  components: {
+    Icon,
+    childMovie,
+    childTheater
+  },
+  watch: {
+    keyword (newVal) {
+      if (newVal) {
+        // 搜索关键词
+        setTimeout(() => {
+          searchKeyword(newVal, this.locate.ci)
+            .then((val) => {
+              this.SEARCH_KEYWORD(val)
+            })
+            .catch((e) => {
+              console.error(e)
+            })
+        }, 500)
       }
     }
   }
+}
 </script>
-
 
 <style lang="less" scoped>
   @import "../../style/base";

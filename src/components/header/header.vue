@@ -5,21 +5,21 @@
 </template>
 
 <script>
-  import { XHeader } from "vux"
-  export default{
-    name: "e-header",
-    props: {
-      myTitle: String
-    },
-    components: {
-      XHeader
-    },
-    methods:{
-      goBack: function(){
-        this.$router.back();
-      }
+import { XHeader } from 'vux'
+export default{
+  name: 'e-header',
+  props: {
+    myTitle: String
+  },
+  components: {
+    XHeader
+  },
+  methods: {
+    goBack: function () {
+      this.$router.back()
     }
   }
+}
 </script>
 
 <style scoped lang="less">

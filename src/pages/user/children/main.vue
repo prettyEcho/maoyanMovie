@@ -18,43 +18,43 @@
 </template>
 
 <script>
-import { Group, Cell, CellBox } from 'vux';
+import { Group, Cell, CellBox } from 'vux'
 import { Logout } from '../../../service/getData'
 
 export default {
   name: 'user',
-  data() {
+  data () {
     return {
-     username: ''
+      username: ''
     }
   },
   computed: {
-    
+
   },
-  methods:{
-    login() {
+  methods: {
+    login () {
       this.$router.push({name: 'login'})
     },
-    logout() {
-      let con = confirm('是否要注销');
-      if( con ) {
+    logout () {
+      let con = confirm('是否要注销')
+      if (con) {
         Logout().then(result => {
-          let data = JSON.parse( result );
-          if( data.code ) {
-            this.username = this.$cookies.get('username');
-          }else{
-            alert('注销失败');
+          let data = JSON.parse(result)
+          if (data.code) {
+            this.username = this.$cookies.get('username')
+          } else {
+            alert('注销失败')
           }
         })
       }
     }
   },
   watch: {
-    
+
   },
-  mounted() {
+  mounted () {
     // 获取username
-    this.username = this.$cookies.get('username');       
+    this.username = this.$cookies.get('username')
   },
   components: {
     Group,
@@ -76,7 +76,7 @@ export default {
       display: inline-block;
       width: 270/@rem;
       height: 220/@rem;
-      padding: 50/@rem 50/@rem 0 50/@rem; 
+      padding: 50/@rem 50/@rem 0 50/@rem;
     }
     .u-word {
       display: inline-block;

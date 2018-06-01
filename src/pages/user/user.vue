@@ -7,14 +7,14 @@
 </template>
 
 <script>
-  export default {
-    name: 'user',
-    data() {
-      return {
-        "user-transition":  ""
-      }
+export default {
+  name: 'user',
+  data () {
+    return {
+      'user-transition': ''
     }
   }
+}
 </script>
 
 <style scoped lang="less">

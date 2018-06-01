@@ -6,33 +6,33 @@
 </template>
 
 <script>
-  import {
-    GetVip
-  } from "../../../service/getData"
+import {
+  GetVip
+} from '../../../service/getData'
 
-  export default {
-    name: 'coupon',
-    data() {
-      return {
-        imgs: []
+export default {
+  name: 'coupon',
+  data () {
+    return {
+      imgs: []
+    }
+  },
+  computed: {
+    length () {
+      return this.imgs.length
+    }
+  },
+  created () {
+    GetVip().then(result => {
+      let data = JSON.parse(result)
+      if (data) {
+        this.imgs = JSON.parse(data.data)
+      } else {
+        alert(data.msg)
       }
-    },
-    computed: {
-        length() {
-            return this.imgs.length;
-        }
-    },
-    created() {
-      GetVip().then(result => {
-        let data = JSON.parse(result);
-        if (data) {
-          this.imgs = JSON.parse(data.data);
-        } else {
-          alert(data.msg);
-        }
-      })
-    }
-    }
+    })
+  }
+}
 </script>
 
 <style scoped lang="less">

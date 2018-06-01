@@ -19,32 +19,31 @@
   </section>
 </template>
 
-
 <script>
-  import {mapState} from 'vuex'
-  export default{
-    name: 'childMovie',
-    props:{
-      movie: Object
-    },
-    computed:{
-      movieList(){
-        for(let i of this.movie.list){
-          if(i.showst === 3){
-            i.showst = [i.sc,'分'];
-            i.show = '购票';
-          }else if(i.showst === 4){
-            i.showst = [i.wish,'想看'];
-            i.show = '预售';
-          }else{
-            i.showst = [i.sc,'分'];
-          }
+import {mapState} from 'vuex'
+export default{
+  name: 'childMovie',
+  props: {
+    movie: Object
+  },
+  computed: {
+    movieList () {
+      for (let i of this.movie.list) {
+        if (i.showst === 3) {
+          i.showst = [i.sc, '分']
+          i.show = '购票'
+        } else if (i.showst === 4) {
+          i.showst = [i.wish, '想看']
+          i.show = '预售'
+        } else {
+          i.showst = [i.sc, '分']
         }
-        console.log(this.movie.list);
-        return this.movie.list;
       }
+      console.log(this.movie.list)
+      return this.movie.list
     }
   }
+}
 </script>
 
 <style lang="less" scoped>

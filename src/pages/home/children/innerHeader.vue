@@ -19,42 +19,42 @@
 </template>
 
 <script>
-  import {Icon, Box} from 'vux';
-  import {mapState} from 'vuex'
+import {Icon, Box} from 'vux'
+import {mapState} from 'vuex'
 
-  export default {
-    name: 'innerHeader',
-    data(){
-      return {
-        nav: [
-          {
-            name: '热映',
-            mark: 'hot'
-          },
-          {
-            name: '待映',
-            mark: 'await'
-          }
-        ] //导航
-      }
-    },
-    computed:{
-      ...mapState({
-        locate: state => state.locate, //当前城市
-      }),
-      navTitle() {
-       return  /\hot/.test(this.$route.path) ? '热映' : '待映';
-      }
-    },
-    methods:{
-
-    },
-    components:{
-      Icon
-    },
-    mounted(){
+export default {
+  name: 'innerHeader',
+  data () {
+    return {
+      nav: [
+        {
+          name: '热映',
+          mark: 'hot'
+        },
+        {
+          name: '待映',
+          mark: 'await'
+        }
+      ] // 导航
     }
+  },
+  computed: {
+    ...mapState({
+      locate: state => state.locate // 当前城市
+    }),
+    navTitle () {
+      return /\hot/.test(this.$route.path) ? '热映' : '待映'
+    }
+  },
+  methods: {
+
+  },
+  components: {
+    Icon
+  },
+  mounted () {
   }
+}
 </script>
 
 <style lang="less" scoped>

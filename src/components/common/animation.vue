@@ -6,11 +6,10 @@
 </template>
 
 <script>
-  export default{
-    name: 'animation'
-  }
+export default{
+  name: 'animation'
+}
 </script>
-
 
 <style lang="less" scoped>
   @import "../../style/base";

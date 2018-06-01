@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default{
-    name: 'theater'
-  }
+export default{
+  name: 'theater'
+}
 </script>
 
 <style lang="less" scoped>

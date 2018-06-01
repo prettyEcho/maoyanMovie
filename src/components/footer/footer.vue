@@ -10,41 +10,41 @@
 </template>
 
 <script>
-  export default {
-    name: 'e-footer',
-    data(){
-      return{
-        nowPage: 1,
-        footers:[
-          {
-            id: 1,
-            title: '电影',
-            icon: 'hot',
-            iconNow: 'hot-now'
-          },
-          {
-            id: 2,
-            title: '影院',
-            icon: 'theatre',
-            iconNow: 'theatre-now'
-          },
-          {
-            id: 3,
-            title: '我的',
-            icon: 'user',
-            iconNow: 'user-now'
-          }
-        ]
-      }
-    },
-    methods: {
-      change(index) {
-        let path = this.footers[index]['icon'];
-        this.nowPage = index + 1;
-        this.$router.push({ path: path})
-      }
+export default {
+  name: 'e-footer',
+  data () {
+    return {
+      nowPage: 1,
+      footers: [
+        {
+          id: 1,
+          title: '电影',
+          icon: 'hot',
+          iconNow: 'hot-now'
+        },
+        {
+          id: 2,
+          title: '影院',
+          icon: 'theatre',
+          iconNow: 'theatre-now'
+        },
+        {
+          id: 3,
+          title: '我的',
+          icon: 'user',
+          iconNow: 'user-now'
+        }
+      ]
+    }
+  },
+  methods: {
+    change (index) {
+      let path = this.footers[index]['icon']
+      this.nowPage = index + 1
+      this.$router.push({ path: path})
     }
   }
+}
 </script>
 
 <style lang="less" scoped>

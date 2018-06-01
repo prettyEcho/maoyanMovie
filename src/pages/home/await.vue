@@ -9,55 +9,55 @@
 </template>
 
 <script>
-  import {mapState, mapMutations,mapActions} from 'vuex'
-  import innerHeader from './children/innerHeader'
-  import recent from './children/recent'
-  import innerBody from './children/innerBody'
-  import loading from '../../components/common/switch'
-  import more from '../../components/common/more'
+import {mapState, mapMutations, mapActions} from 'vuex'
+import innerHeader from './children/innerHeader'
+import recent from './children/recent'
+import innerBody from './children/innerBody'
+import loading from '../../components/common/switch'
+import more from '../../components/common/more'
 
-  export default{
-    name: 'await',
-    data(){
-      return {
-      }
-    },
-    created(){
-      this.CHANGE_TITLE('猫眼电影');  //改变标题
-      this.CHANGE_SWITCH(true); //打开组件间跳转动画
-      this.wish();  //获取最受欢迎
-      this.coming().then(() => {   //获取待映第一屏
-        setTimeout(() => {
-          this.CHANGE_SWITCH(false); //关闭组件间跳转动画
-        },500)
-      });
-    },
-    mounted(){
-    },
-    computed: {
-      ...mapState({
-        switchFlag: state => state.switch,  //切换loading标识
-        moreFlag: state => state.more  //加载更多
-      })
-    },
-    methods: {
-      ...mapMutations([
-        'CHANGE_TITLE',
-        'CHANGE_SWITCH'
-      ]),
-      ...mapActions([
-        'wish',
-        'coming'
-      ])
-    },
-    components: {
-      innerHeader,
-      innerBody,
-      recent,
-      loading,
-      more
+export default{
+  name: 'await',
+  data () {
+    return {
     }
+  },
+  created () {
+    this.CHANGE_TITLE('猫眼电影') // 改变标题
+    this.CHANGE_SWITCH(true) // 打开组件间跳转动画
+    this.wish() // 获取最受欢迎
+    this.coming().then(() => { // 获取待映第一屏
+      setTimeout(() => {
+        this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
+      }, 500)
+    })
+  },
+  mounted () {
+  },
+  computed: {
+    ...mapState({
+      switchFlag: state => state.switch, // 切换loading标识
+      moreFlag: state => state.more // 加载更多
+    })
+  },
+  methods: {
+    ...mapMutations([
+      'CHANGE_TITLE',
+      'CHANGE_SWITCH'
+    ]),
+    ...mapActions([
+      'wish',
+      'coming'
+    ])
+  },
+  components: {
+    innerHeader,
+    innerBody,
+    recent,
+    loading,
+    more
   }
+}
 </script>
 
 <style lang="less" scoped>

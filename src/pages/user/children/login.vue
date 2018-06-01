@@ -12,17 +12,17 @@
 </template>
 
 <script>
-import { XInput, Group, XButton, Cell } from "vux";
-import { Login } from '../../../service/getData';
+import { XInput, Group, XButton, Cell } from 'vux'
+import { Login } from '../../../service/getData'
 
 export default {
-    name: 'login',
-    data() {
-        return {
-            username: '',
-            password: ''
-        }
-    },
+  name: 'login',
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
   components: {
     XInput,
     XButton,
@@ -30,40 +30,40 @@ export default {
     Cell
   },
   methods: {
-    foucs(value, event) {
-      let target = event.target.parentNode.parentNode;
-      target.style.borderWidth = "1px 0";
-      target.style.borderStyle = "solid";
-      target.style.borderColor = "#dd4039";
+    foucs (value, event) {
+      let target = event.target.parentNode.parentNode
+      target.style.borderWidth = '1px 0'
+      target.style.borderStyle = 'solid'
+      target.style.borderColor = '#dd4039'
     },
-    blur(value, event) {
-      let target = event.target.parentNode.parentNode;
-      target.style.border = "none";
+    blur (value, event) {
+      let target = event.target.parentNode.parentNode
+      target.style.border = 'none'
     },
-    login() {
-        if( !this.username ) {
-            alert('请输入用户名');
-            return;
-        }
+    login () {
+      if (!this.username) {
+        alert('请输入用户名')
+        return
+      }
 
-        if( !this.password ) {
-            alert('请输入密码');  
-            return;         
-        }
+      if (!this.password) {
+        alert('请输入密码')
+        return
+      }
 
-        if( this.username && this.password ) {
-            Login(this.username, this.password).then(result => {
-                let data = JSON.parse( result );
-                if( data.code == 1 ) {
-                    this.$router.push({ path: '/user'} );
-                }else{
-                    alert( data.msg );
-                }
-            })
-        }
+      if (this.username && this.password) {
+        Login(this.username, this.password).then(result => {
+          let data = JSON.parse(result)
+          if (data.code == 1) {
+            this.$router.push({ path: '/user'})
+          } else {
+            alert(data.msg)
+          }
+        })
+      }
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -31,99 +31,99 @@
   </section>
 </template>
 <script>
-  import {mapState,mapMutations,mapGetters,mapActions} from 'vuex'
-  import {cities} from "../../mock/cities"
+import {mapState, mapMutations, mapGetters, mapActions} from 'vuex'
+import {cities} from '../../mock/cities'
 
-  export default{
-    name: 'city',
-    data(){
-      return {
-        cities,
-        fromPage: '', //进入时的路由
-      }
-    },
-    beforeMount(){
-      this.CHANGE_TITLE(`当前城市-${this.locate.city}`);  //改变标题
-      this.GET_CITIES(this.cities);  //储存城市列表
-    },
-    computed: {
-      ...mapState({
-        locate: state => state.locate, //当前城市
-        recentCity: state => state.recentCities //最近搜索城市
-      }),
-      ...mapGetters([
-        'hotCities',
-        'cityList'
-      ]),
-      navItem(){
-        let navStart = [], navEnd = [];
-        navStart = [
-          {
-            nm: '定位',
-            id: 'locate'
-          },
-          {
-            nm: '最近',
-            id: 'recent'
-          },
-          {
-            nm: '热门',
-            id: 'hot'
-          }
-        ];
-        for(let attr in this.cityList){
-          let temp = {};
-          temp.nm = attr;
-          temp.id = attr;
-          navEnd.push(temp);
-        }
-        return navStart.concat(navEnd);
-      }
-    },
-    methods:{
-      ...mapMutations([
-        'CHANGE_TITLE',
-        'GET_CITIES',
-        'RECENT_CITIES'
-      ]),
-      ...mapActions([
-        'hot',
-        'coming',
-        'wish'
-      ]),
-      back(ev){
-        this.$router.go(-1); //返回之前的路由
-        this.locate.city = ev.target.innerHTML; //更改city
-        for(let i of this.cities){    //更改ci
-          if(i.nm === ev.target.innerHTML){
-           this.locate.ci = i.id;
-          }
-        }
-        //调取数据
-        if(this.fromPage === 'hot'){
-          this.hot.paging.offset = 0;
-          this.hot();
-        }else{
-          this.coming.paging.offset = this.coming.paging.limit;
-          this.wish();
-          this.coming();
-        }
-        //更新最近搜素城市
-        this.RECENT_CITIES(ev.target.innerHTML);
-      }
-    },
-    beforeRouteEnter(to, from, next){
-      next((vm) => {
-        vm.fromPage = from.name;
-      });
-    },
-    //todo：路由改变
-    beforeRouteLeave(to, from, next){
-      //替换当前路由，为了防止在当前页面改变hash，返回到该页面无法加载内容
-      this.$router.replace({name: 'city'}); //bug
-      next();
+export default{
+  name: 'city',
+  data () {
+    return {
+      cities,
+      fromPage: '' // 进入时的路由
     }
+  },
+  beforeMount () {
+    this.CHANGE_TITLE(`当前城市-${this.locate.city}`) // 改变标题
+    this.GET_CITIES(this.cities) // 储存城市列表
+  },
+  computed: {
+    ...mapState({
+      locate: state => state.locate, // 当前城市
+      recentCity: state => state.recentCities // 最近搜索城市
+    }),
+    ...mapGetters([
+      'hotCities',
+      'cityList'
+    ]),
+    navItem () {
+      let navStart = [], navEnd = []
+      navStart = [
+        {
+          nm: '定位',
+          id: 'locate'
+        },
+        {
+          nm: '最近',
+          id: 'recent'
+        },
+        {
+          nm: '热门',
+          id: 'hot'
+        }
+      ]
+      for (let attr in this.cityList) {
+        let temp = {}
+        temp.nm = attr
+        temp.id = attr
+        navEnd.push(temp)
+      }
+      return navStart.concat(navEnd)
+    }
+  },
+  methods: {
+    ...mapMutations([
+      'CHANGE_TITLE',
+      'GET_CITIES',
+      'RECENT_CITIES'
+    ]),
+    ...mapActions([
+      'hot',
+      'coming',
+      'wish'
+    ]),
+    back (ev) {
+      this.$router.go(-1) // 返回之前的路由
+      this.locate.city = ev.target.innerHTML // 更改city
+      for (let i of this.cities) { // 更改ci
+        if (i.nm === ev.target.innerHTML) {
+          this.locate.ci = i.id
+        }
+      }
+      // 调取数据
+      if (this.fromPage === 'hot') {
+        this.hot.paging.offset = 0
+        this.hot()
+      } else {
+        this.coming.paging.offset = this.coming.paging.limit
+        this.wish()
+        this.coming()
+      }
+      // 更新最近搜素城市
+      this.RECENT_CITIES(ev.target.innerHTML)
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    next((vm) => {
+      vm.fromPage = from.name
+    })
+  },
+  // todo：路由改变
+  beforeRouteLeave (to, from, next) {
+    // 替换当前路由，为了防止在当前页面改变hash，返回到该页面无法加载内容
+    this.$router.replace({name: 'city'}) // bug
+    next()
   }
+}
 </script>
 
 <style lang="less" scoped>
