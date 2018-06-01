@@ -1,6 +1,7 @@
 
 <template>
   <section id="detail">
+    <!-- 电影详情header start -->
     <section class="detail-header">
       <img :src="detail.albumImg" :alt="detail.nm" class="detail-header-img">
       <dt class="detail-header-info">
@@ -27,24 +28,42 @@
         <span class="detail-header-btn-score">评分</span>
       </button>
     </section>
+    <!-- 电影详情header end --> 
+    <!-- 电影简介 start -->       
     <section class="detail-dra">
       {{detail.dra}}
     </section>
+    <!-- 电影简介 end -->
+    <!-- 电影详情演员表 start -->                  
     <section class="detail-celebrities">
       <h5 class="detail-celebrities-header">演职人员</h5>
-      <swiper style="overflow: scroll">
-        <swiper-item v-for="item in list" style="float: left">
-          <img :src="item.img" alt="" style="width: 100px; padding: 10px">
-        </swiper-item>
+      <swiper :options="swiperOption">
+        <swiper-slide v-for="item in celebrityList" :key="item.id" @click="">
+          <img class="detail-celebrities-avatar" :src="item.avatar | avatar" :alt="item.cnm">
+          <div class="detail-celebrities-cnm">{{item.cnm}}</div>
+          <div class="detail-celebrities-role">{{item.roles}}</div>
+        </swiper-slide>
       </swiper>
     </section>
+    <!-- 电影详情演员表 end -->                      
+    <!-- 演员dialog start -->
+    <div v-transfer-dom>
+      <x-dialog v-model="showToast" class="dialog-demo">
+        
+      </x-dialog>
+    </div>
+    <!-- 演员dialog end -->    
   </section>
 </template>
 
 <script>
 
 import { GetCelebrities, GetDetail, GetComments } from '../../service/getData'
-import { Rater, Toast, Swiper } from 'vux'
+import { Rater, Toast } from 'vux'
+import { swiper, swiperSlide, x-transfer-dom, xDialog } from 'vue-awesome-swiper'
+
+import 'swiper/dist/css/swiper.css'
+
 export default {
   name: 'movie_detail',
   data () {
@@ -54,26 +73,12 @@ export default {
       comments: [],
       showPositionValue: false,
       position: 'middle',
-      list: [
-        {
-          img: require('@/images/maoyan8.png')
-        },
-        {
-          img: require('@/images/maoyan8.png')
-        },
-        {
-          img: require('@/images/maoyan8.png')
-        },
-        {
-          img: require('@/images/maoyan8.png')
-        },
-        {
-          img: require('@/images/maoyan8.png')
-        },
-        {
-          img: require('@/images/maoyan8.png')
-        }
-      ]
+      swiperOption: {
+        direction: 'horizontal',
+        slidesPerView: 5,
+        spaceBetween: 6
+      },
+      celebrityList: []
     }
   },
   methods: {
@@ -83,9 +88,11 @@ export default {
   },
   filters: {
     format: function (value) {
-      console.log(String(value).length)
       let ret = String(value).length >= 5 ? `${String(value).slice(0, -4)}.${String(value).slice(-4, -3)}` : value
       return ret
+    },
+    avatar: function (value) {
+      return value.replace(/\/w.h/,'');
     }
   },
   beforeCreate () {
@@ -94,14 +101,15 @@ export default {
 
     // 演员表
     GetCelebrities(movieId).then((res) => {
-      console.dir(JSON.parse(res))
+      let { data } = JSON.parse(res);
+      console.dir(data);
+      this.celebrityList = data[1];
     }, err => {
       console.error(err)
     })
 
     // 电影详情
     GetDetail(movieId).then((res) => {
-      console.dir(JSON.parse(res))
       let data = JSON.parse(res)
       this.detail = data.data.movie
     }, err => {
@@ -110,7 +118,6 @@ export default {
 
     // 评论
     GetComments(movieId).then((res) => {
-      console.dir(JSON.parse(res))
     }, err => {
       console.error(err)
     })
@@ -118,7 +125,9 @@ export default {
   components: {
     Rater,
     Toast,
-    Swiper
+    swiper,
+    swiperSlide,
+    xDialog
   }
 }
 </script>
@@ -246,6 +255,18 @@ export default {
     font-weight: 400;
     font-size: 40/@rem;
     padding-bottom: 40/@rem;
+  }
+  .detail-celebrities-avatar {
+    width: 100%;
+  }
+  .detail-celebrities-cnm {
+    text-align: center;
+    font-size: 28/@rem;
+  }
+  .detail-celebrities-role {
+    text-align: center;
+    color: #9c9c9c;    
+    font-size: 26/@rem;
   }
 }
 </style>
