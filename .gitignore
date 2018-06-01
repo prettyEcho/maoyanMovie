@@ -14,3 +14,4 @@ yarn-error.log*
 *.sln
 
 .gitignore
+logs/login.log
