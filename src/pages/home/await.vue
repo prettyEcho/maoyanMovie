@@ -9,23 +9,23 @@
 </template>
 
 <script>
-import {mapState, mapMutations, mapActions} from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 import innerHeader from './children/innerHeader'
 import recent from './children/recent'
 import innerBody from './children/innerBody'
 import loading from '../../components/common/switch'
 import more from '../../components/common/more'
 
-export default{
+export default {
   name: 'await',
   data () {
     return {
     }
   },
   created () {
+    this.wish() // 获取最受欢迎    
     this.CHANGE_TITLE('猫眼电影') // 改变标题
-    this.CHANGE_SWITCH(true) // 打开组件间跳转动画
-    this.wish() // 获取最受欢迎
+    this.CHANGE_SWITCH(true) // 打开组件间跳转动画    
     this.coming().then(() => { // 获取待映第一屏
       setTimeout(() => {
         this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
@@ -61,9 +61,9 @@ export default{
 </script>
 
 <style lang="less" scoped>
-  @import "../../style/base";
+@import '../../style/base';
 
-  .await-page{
-    background-color: @body;
-  }
+.await-page {
+  background-color: @body;
+}
 </style>

@@ -3,9 +3,9 @@
     <h3 class="title">近期最受欢迎</h3>
     <!-- slides -->
     <swiper class="recent-body" :options="swiperOption" ref="mySwiper">
-      <swiper-slide class="item" v-for="item in coming" :key="item.id" @click="swiperClick">
+      <swiper-slide class="item" v-for="item in coming" :key="item.id" :id="item.id">
         <p class="love empty"></p>
-        <img :src="item.img.replace(/\/w.h/,'')" alt="item.nm" class="img">
+        <img :src="item.img.replace(/\/w.h/,'')" :alt="item.nm" class="img">
         <h3 class="name">{{item.nm}}</h3>
         <p class="wish">{{item.wish}}人想看</p>
         <p class="date">{{item.comingTitle.split(' ').join('').replace(/周\W/,'')}}</p>
@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import getStyle from '../../../script/getStyle'
+import { mapState, mapMutations } from 'vuex'
 import 'swiper/dist/css/swiper.css'
 
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -31,33 +30,15 @@ export default {
       swiperLength: 0,
       swiperOption: {
         slidesPerView: 4,
-        spaceBetween: 12
+        spaceBetween: 12,
+        on: {
+          touchEnd: (event) => {
+            let movieId = event.target.parentNode.id
+            this.goDetail(movieId)
+          }
+        }
       }
     }
-  },
-  updated () {
-
-    /* this.$nextTick(function() {
-      this.swiperLength = this.coming.length;
-      //初始化body宽度
-      let oWrap = document.querySelector(".recent"),
-        oBody = document.querySelector(".recent-body"),
-        oLi = oBody.querySelectorAll(".item"),
-        style,
-        aLi = oLi[0];
-      style = getStyle(aLi);
-      oBody.style.width =
-        Math.ceil(parseFloat(style.width) * oLi.length) + "px";
-
-      //确定ul左边临界值
-      this.startX =
-        oBody.getBoundingClientRect().left -
-        document.documentElement.clientLeft;
-      //确定ul右边临界值
-      this.endX =
-        oWrap.getBoundingClientRect().width -
-        oBody.getBoundingClientRect().width;
-    }); */
   },
   mounted () {
     console.log('this is current swiper instance object', this.swiper)
@@ -71,8 +52,13 @@ export default {
     }
   },
   methods: {
-    swiperClick () {
-
+    ...mapMutations([
+      'CHANGE_MOVIEID'
+    ]),
+    goDetail (id) {
+      // to article
+      this.CHANGE_MOVIEID(id)
+      this.$router.push({ name: 'article', query: { id } })
     }
   },
   components: {
@@ -83,13 +69,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../../../style/base";
+@import '../../../style/base';
 
 .recent {
   position: relative;
   width: 100%;
   height: 700 / @rem;
-  margin: 0 0 35/@rem 0;
+  margin: 0 0 35 / @rem 0;
   padding-left: 32 / @rem;
   padding-bottom: 66 / @rem;
   border-top: 1px solid @grey;
@@ -113,11 +99,12 @@ export default {
         z-index: 99999;
       }
       .empty {
-        background: url("../../../images/sprite.png") no-repeat 0 -110/@rem;
+        background: url('../../../images/sprite.png') no-repeat 0 -110 / @rem;
         background-size: 220 / @rem 165 / @rem;
       }
       .full {
-        background: url("../../../images/sprite.png") no-repeat -165/@rem -55/@rem;
+        background: url('../../../images/sprite.png') no-repeat -165 / @rem -55 /
+          @rem;
         background-size: 220 / @rem 165 / @rem;
         opacity: 0.7;
       }
