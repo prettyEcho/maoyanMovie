@@ -187,5 +187,15 @@ export const GetDetail = (id) => getJson({
  *   id: 电影id
  */
 export const GetComments = (id) => getJson({
-  url: `${phost}/mmdb/comments/movie/v2/248170.json?limit=3&offset=0&uuid=1A6E888B4A4B29B16FBA1299108DBE9CD47DBF5B6DDEF3614D607643E4DEA3CA&token=C0y7a0LKIfh_f_bFfeUmZa8cWxMAAAAAtwUAABMoE1m5fB9diEzvncgcRd4qE-MuHNwx1tSfk8q5Ktv_gsRqURYciyPVz_eGcF-KYA&userid=63866329&ci=1&clientType=wechat_small_program&channelId=40000`
+  url: `${phost}/mmdb/comments/movie/v2/${id}.json?limit=3&offset=0&uuid=1A6E888B4A4B29B16FBA1299108DBE9CD47DBF5B6DDEF3614D607643E4DEA3CA&token=C0y7a0LKIfh_f_bFfeUmZa8cWxMAAAAAtwUAABMoE1m5fB9diEzvncgcRd4qE-MuHNwx1tSfk8q5Ktv_gsRqURYciyPVz_eGcF-KYA&userid=63866329&ci=1&clientType=wechat_small_program&channelId=40000`
+})
+
+/**
+ * 获取电影票房
+ * https://wx.maoyan.com/hostproxy/mmdb/movie/1208942/feature/v1/mbox.json
+ * 参数：
+ *   id: 电影id
+ */
+export const GetMBox = (id) => getJson({
+  url: `${phost}/mmdb/movie/${id}/feature/v1/mbox.json`
 })
