@@ -11,13 +11,13 @@ if (controlHost !== 'db' && controlHost !== 'file') {
 let uhost = controlHost === 'db' ? process.env.DHOST : process.env.FHOST
 
 /*
-* 获取热播剧
-* @param:
-*
-*   limit: 每页展示的条数
-*   offset: 起始页
-*   ct: 城市
-* */
+ * 获取热播剧
+ * @param:
+ *
+ *   limit: 每页展示的条数
+ *   offset: 起始页
+ *   ct: 城市
+ * */
 
 export const getHot = (limit, offset, ct) => getJson({
   type: 'get', // 默认为get
@@ -26,9 +26,9 @@ export const getHot = (limit, offset, ct) => getJson({
 })
 
 /*
-* 获取当前城市
-*
-* */
+ * 获取当前城市
+ *
+ * */
 
 export const getLocate = () => getJson({
   url: `${phost}/hostproxy/locate/v2/rgeo`,
@@ -36,12 +36,12 @@ export const getLocate = () => getJson({
 })
 
 /*
-* 待映最受欢迎
-* @param:
-*   ci: 第几次,
-*   limit: 条目
-*   offset：位置
-* */
+ * 待映最受欢迎
+ * @param:
+ *   ci: 第几次,
+ *   limit: 条目
+ *   offset：位置
+ * */
 
 export const getWish = (ci) => getJson({
   url: `${phost}/mmdb/movie/v1/list/wish/order/coming.json`,
@@ -49,17 +49,17 @@ export const getWish = (ci) => getJson({
 })
 
 /*
-* 待映首次加载影片
-* @param:
-*   ci: 城市序列号,
-*   limit: 条目
-*
-* @return:
-*   coming: 待映影片,
-*   hot: 空,
-*   movieIds: 后续电影id集合,
-*   stid:
-* */
+ * 待映首次加载影片
+ * @param:
+ *   ci: 城市序列号,
+ *   limit: 条目
+ *
+ * @return:
+ *   coming: 待映影片,
+ *   hot: 空,
+ *   movieIds: 后续电影id集合,
+ *   stid:
+ * */
 
 export const getComing = (ci) => getJson({
   url: `${phost}/mmdb/movie/v2/list/rt/order/coming.json`,
@@ -80,18 +80,18 @@ export const getComingMore = (ci, ids) => getJson({
 })
 
 /*
-* 获取热门搜索
-* https://wx.maoyan.com/hostproxy/mmdb/search/movie/hotmovie/list.json
-* */
+ * 获取热门搜索
+ * https://wx.maoyan.com/hostproxy/mmdb/search/movie/hotmovie/list.json
+ * */
 
 export const getHotSearch = () => getJson({
   url: `${phost}/hostproxy/mmdb/search/movie/hotmovie/list.json`
 })
 
 /*
-* 搜索关键词电影结果
-*
-* */
+ * 搜索关键词电影结果
+ *
+ * */
 
 export const searchKeyword = (keyword, ci) => getJson({
   url: `${phost}/hostproxy/mmdb/search/integrated/keyword/list.json`,
@@ -197,5 +197,27 @@ export const GetComments = (id) => getJson({
  *   id: 电影id
  */
 export const GetMBox = (id) => getJson({
+  url: `${phost}/mmdb/movie/${id}/feature/v1/mbox.json`
+})
+
+/**
+ * 获取电影院列表
+ * https://wx.maoyan.com/hostproxy/mmcs/cinema/v1/select/cinemas.json?cityId=10&limit=12&offset=12&channelId=40000&userid=63866329&lng=116.30393&lat=40.067707
+ * 参数：
+ *   cityId: cid,
+ *   limt: 展示的条目
+ *   offset: 开始的位置
+ */
+export const GetCinemas = (cityId, limit, offset) => getJson({
+  url: `${phost}/mmcs/cinema/v1/select/cinemas.json?cityId=${cityId}&limit=${limit}&offset=${offset}&channelId=40000`
+})
+
+/**
+ * 获取电影票房
+ * https://wx.maoyan.com/hostproxy/mmdb/movie/1208942/feature/v1/mbox.json
+ * 参数：
+ *   id: 电影id
+ */
+export const GetMBx = (id) => getJson({
   url: `${phost}/mmdb/movie/${id}/feature/v1/mbox.json`
 })

@@ -1,11 +1,11 @@
 import {
   CHANGE_LOADING,
   CHANGE_SWITCH,
-  CHANGE_TITLE, GET_COMING,
+  CHANGE_TITLE,
+  GET_COMING,
   GET_HOT,
   GET_LOCATE,
   GET_WISH,
-  CHANGE_MORE,
   GET_COMING_MORE,
   GET_HOT_SEARCH,
   GET_CITIES,
@@ -31,14 +31,10 @@ export default {
     state.title = val
   },
 
-  // 加载更多
-  [CHANGE_MORE] (state, val) {
-    state.more = val
-  },
-
   // 储存hot
   [GET_HOT] (state, val) {
     const json = JSON.parse(val)
+    console.log(json)
     state.hot.hot = state.hot.hot.concat(json.data.hot)
     state.hot.paging = json.data.paging
     state.hot.paging.offset += state.hot.paging.limit

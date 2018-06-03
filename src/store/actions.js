@@ -16,13 +16,23 @@ import {
 
 export default {
   // 获取当前城市
-  async locate ({dispatch, commit}) {
+  async locate ({
+    dispatch,
+    commit
+  }) {
     commit('GET_LOCATE', await getLocate()) // 存储当前城市
   },
 
   // 获取热播列表
-  async hot ({commit, state}) {
-    const {limit, offset, ct} = {
+  async hot ({
+    commit,
+    state
+  }) {
+    const {
+      limit,
+      offset,
+      ct
+    } = {
       limit: state.hot.paging.limit,
       offset: state.hot.paging.offset,
       ct: state.locate.city
@@ -32,12 +42,18 @@ export default {
   },
 
   // 获取待映最受欢迎影片
-  async wish ({commit, state}) {
+  async wish ({
+    commit,
+    state
+  }) {
     commit('GET_WISH', await getWish(state.locate.ci))
   },
 
   // 获取待映电影第一屏
-  coming ({commit, state}) {
+  coming ({
+    commit,
+    state
+  }) {
     getComing(state.locate.ci)
       .then((val) => {
         commit('GET_COMING', val)
@@ -48,7 +64,10 @@ export default {
   },
 
   // 获取待映电影其他
-  comingMore ({commit, state}) {
+  comingMore ({
+    commit,
+    state
+  }) {
     let start = state.coming.paging.offset,
       end = state.coming.paging.offset + state.coming.paging.limit
 

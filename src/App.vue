@@ -6,7 +6,7 @@
       <transition name="home" mode="out-in">
         <router-view></router-view>
       </transition>
-      <inner-footer slot="bottom"></inner-footer>
+      <m-footer slot="bottom"></m-footer>
     </view-box>
   </div>
 </template>
@@ -16,7 +16,7 @@
 import { mapState, mapMutations, mapActions } from 'vuex'
 import ViewBox from '../node_modules/vux/src/components/view-box/index.vue'
 import mHeader from './components/header/header'
-import innerFooter from './components/footer/footer'
+import mFooter from './components/footer/footer'
 import animation from './components/common/animation'
 import getStyle from './script/getStyle'
 
@@ -24,28 +24,20 @@ export default {
   name: 'app',
   data () {
     return {
-      page: this.hot, // 当前组件的数据调取
-      hasMore: false, // 当前组件的加载更多,对象为了实现引用
-      toPath: '' // 目标路由的path
     }
   },
   computed: {
     ...mapState({
       myTitle: state => state.title, // 标题
       loading: state => state.loading, // 开机动画
-      hotMore: state => state.hot.paging.hasMore, // 是否还有数据
-      awaitMore: state => state.coming.paging.hasMore // 是否还有数据
     })
   },
   methods: {
     ...mapActions([
-      'hot',
-      'comingMore',
       'locate'
     ]),
     ...mapMutations([
-      'CHANGE_LOADING',
-      'CHANGE_MORE'
+      'CHANGE_LOADING'
     ]),
     getLoad () { // 首次加载
       let that = this
@@ -53,42 +45,12 @@ export default {
         that.CHANGE_LOADING(false) // 开机动画
         that.$nextTick(() => {
           that.toPath = that.$route.path
-          that.specifyParam() // 指定参数
-          that.scroll()
+          //that.specifyParam() // 指定参数
+          //that.scroll()
         })
       }, 1500)
     },
-    scroll () { // 加载更多
-      const scrollBody = this.$refs.viewBox.getScrollBody() // 滑动块的wrap
-      const that = this
-
-      scrollBody.addEventListener('scroll', scrollFn, false)
-
-      function scrollFn () {
-        let scrollerHeight,
-          bodyHeight,
-          offsetT,
-          disT
-        const scroller = scrollBody.firstElementChild // 滑动块
-
-        // 获取数据
-        // 实际高度
-        bodyHeight = parseFloat(getStyle(scrollBody).height) - parseFloat(getStyle(scrollBody).paddingBottom)
-        scrollerHeight = parseFloat(getStyle(scroller).height)
-        disT = Math.round(scrollerHeight - bodyHeight) // 高度差
-        offsetT = that.$refs.viewBox.getScrollTop()
-
-        if (offsetT === 0) { return }
-        // 判断是否到底
-        if (disT === offsetT && that.hasMore) {
-          let newT = disT + 30
-          that.CHANGE_MORE(true) // 显示加载更多...
-          that.$refs.viewBox.scrollTo(newT) // 增加显示更多的空间
-          that.page() // 加载数据
-        }
-      }
-    },
-    specifyParam () { // 指定参数
+    /* specifyParam () { // 指定参数
       if (/hot/.test(this.toPath)) {
         this.page = this.hot
         this.hasMore = this.hotMore
@@ -96,30 +58,30 @@ export default {
         this.page = this.comingMore
         this.hasMore = this.awaitMore
       }
-    }
+    } */
   },
-  watch: {
-    hotMore: {
-      handler: function (val, oldVal) {
-        if (/hot/.test(this.toPath)) {
-          this.hasMore = this.hotMore
-        }
-      },
-      immediate: true
-    },
-    awaitMore: {
-      handler: function (val, oldVal) {
-        if (/await/.test(this.toPath)) {
-          this.hasMore = this.awaitMore
-        }
-      },
-      immediate: true
-    }
-  },
+  /*  watch: {
+     hotMore: {
+       handler: function (val, oldVal) {
+         if (/hot/.test(this.toPath)) {
+           this.hasMore = this.hotMore
+         }
+       },
+       immediate: true
+     },
+     awaitMore: {
+       handler: function (val, oldVal) {
+         if (/await/.test(this.toPath)) {
+           this.hasMore = this.awaitMore
+         }
+       },
+       immediate: true
+     }
+   }, */
   components: {
     ViewBox,
     mHeader,
-    innerFooter,
+    mFooter,
     animation
   },
   created () {
@@ -146,7 +108,7 @@ export default {
   height: 100%;
 }
 .weui-tab__panel {
-  padding-bottom: 180 / @rem !important;
+  padding-bottom: 318 / @rem !important;
 }
 
 .home-enter-active,

@@ -9,7 +9,6 @@ Vue.use(Vuex)
 const state = {
   loading: true, // 开机动画开
   switch: false, // 页面切换动画
-  more: false, // 加载更多
   locate: { // 当前城市
     'country': '中国',
     'marslat': 40.0677,

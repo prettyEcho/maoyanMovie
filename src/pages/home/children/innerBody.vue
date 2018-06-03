@@ -1,6 +1,6 @@
 <template>
-  <section class="wrap">
-    <ul class="scroller">
+  <section id="scroller" class="scroller">
+    <ul id="scrollBody">
       <li v-for="item in list" class="item" :key="item.id" @click="goDetail(item.id)">
         <p class="title" v-if="'comingTitle' in item">{{item.comingTitle}}</p>
         <section class="center">
@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'CHANGE_MORE',
       'CHANGE_MOVIEID'
     ]),
     goDetail (id) {
@@ -59,7 +58,6 @@ export default {
     }
   },
   updated () {
-    this.CHANGE_MORE(false)
   }
 }
 </script>
@@ -67,7 +65,7 @@ export default {
 <style lang="less" scoped>
 @import '../../../style/base';
 
-.wrap {
+.scroller {
   padding-left: 32 / @rem;
   border-top: 1px solid @grey;
   background-color: #fff;

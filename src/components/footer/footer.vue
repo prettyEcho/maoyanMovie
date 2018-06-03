@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'e-footer',
+  name: 'm-footer',
   data () {
     return {
       nowPage: 1,
