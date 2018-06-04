@@ -32,15 +32,14 @@
   </section>
 </template>
 <script>
-import { mapState, mapMutations, mapGetters, mapActions } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 import { cities } from '../../mock/cities'
 
 export default {
   name: 'city',
   data () {
     return {
-      cities,
-      fromPage: '' // 进入时的路由
+      cities
     }
   },
   beforeMount () {
@@ -86,44 +85,21 @@ export default {
     ...mapMutations([
       'CHANGE_TITLE',
       'GET_CITIES',
-      'RECENT_CITIES'
-    ]),
-    ...mapActions([
-      'hot',
-      'coming',
-      'wish'
+      'RECENT_CITIES',
+      'UPDATE_LOCATE'
     ]),
     back (ev) {
+      let temp = {}
       this.$router.go(-1) // 返回之前的路由
-      this.locate.city = ev.target.innerHTML // 更改city
+      temp.city = ev.target.innerHTML // 更改city
       for (let i of this.cities) { // 更改ci
         if (i.nm === ev.target.innerHTML) {
-          this.locate.ci = i.id
+          temp.ci = i.id
         }
       }
-      // 调取数据
-      if (this.fromPage === 'hot') {
-        this.hot.paging.offset = 0
-        this.hot()
-      } else {
-        this.coming.paging.offset = this.coming.paging.limit
-        this.wish()
-        this.coming()
-      }
-      // 更新最近搜素城市
-      this.RECENT_CITIES(ev.target.innerHTML)
+      this.UPDATE_LOCATE(temp) // 更新store locate
+      this.RECENT_CITIES(ev.target.innerHTML) // 更新最近搜素城市
     }
-  },
-  beforeRouteEnter (to, from, next) {
-    next((vm) => {
-      vm.fromPage = from.name
-    })
-  },
-  // todo：路由改变
-  beforeRouteLeave (to, from, next) {
-    // 替换当前路由，为了防止在当前页面改变hash，返回到该页面无法加载内容
-    this.$router.replace({ name: 'city' }) // bug
-    next()
   }
 }
 </script>

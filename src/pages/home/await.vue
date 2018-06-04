@@ -23,6 +23,7 @@ export default {
     }
   },
   created () {
+    this.UPDATE_COMING_PAGEING({ offset: 10 }) // 更新coming加载更多列表开始位置
     this.wish() // 获取最受欢迎
     this.CHANGE_TITLE('猫眼电影') // 改变标题
     this.CHANGE_SWITCH(true) // 打开组件间跳转动画
@@ -47,7 +48,8 @@ export default {
   methods: {
     ...mapMutations([
       'CHANGE_TITLE',
-      'CHANGE_SWITCH'
+      'CHANGE_SWITCH',
+      'UPDATE_COMING_PAGEING'
     ]),
     ...mapActions([
       'wish',
