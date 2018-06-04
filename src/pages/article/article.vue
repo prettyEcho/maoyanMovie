@@ -173,7 +173,8 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'CHANGE_TITLE'
+      'CHANGE_TITLE',
+      'CHANGE_SWITCH'
     ]),
     showPosition () {
       this.showPositionValue = true
@@ -235,7 +236,11 @@ export default {
       console.error(err)
     })
   },
-  beforeMount () {
+  created () {
+    this.CHANGE_SWITCH(true) // 打开组件间跳转动画
+  },
+  mounted () {
+    this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
     this.CHANGE_TITLE('影片详情') // 改变标题
   },
   components: {
