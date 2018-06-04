@@ -12,6 +12,7 @@ import innerHeader from './children/innerHeader'
 import innerBody from './children/innerBody'
 import more from '../../components/common/more'
 import getStyle from '../../script/getStyle'
+const _ = require('lodash')
 
 export default {
   name: 'hot',
@@ -21,18 +22,22 @@ export default {
     }
   },
   created () {
-    this.hot() // 初始化hot
-    this.CHANGE_TITLE('猫眼电影') // 改变标题    
+    this.CHANGE_SWITCH(true) // 打开组件切换动画
+    this.CHANGE_TITLE('猫眼电影') // 改变标题
+    this.hot()// 初始化hot
   },
   mounted () {
     let scroller = document.querySelector('.hot-page')
-    scroller.addEventListener('scroll', this.scroll, false)
+    scroller.removeEventListener('scroll', _.throttle(this.scroll, 300), false) // 取消事件监听
+    scroller.addEventListener('scroll', _.throttle(this.scroll, 300), false)
+    this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
   },
   updated () {
     let scroller = document.querySelector('.hot-page')
-    scroller.addEventListener('scroll', this.scroll, false)
+    scroller.removeEventListener('scroll', _.throttle(this.scroll, 300), false) // 取消事件监听
+    scroller.addEventListener('scroll', _.throttle(this.scroll, 300), false)
     this.moreFlag = false // 隐藏加载更多...
-    scroller.style.height = parseFloat(getStyle(scroller).height) + 30 + 'px' // 取消显示更多空间
+    // scroller.style.height = parseFloat(getStyle(scroller).height) + 30 + 'px' // 取消显示更多空间
   },
   computed: {
     ...mapState({
@@ -66,9 +71,8 @@ export default {
       if (disT <= 0 && this.hotMore) {
         this.hot() // 加载更多数据
         this.moreFlag = true // 显示加载更多...
-        scroller.scrollTop += scroller.scrollTop + 30 + 'px' //增加显示更多空间
-        scroller.style.height = scrollerHeight - 30 + 'px'
-        scroller.removeEventListener('scroll', this.scroll, false) // 取消事件监听
+        scroller.scrollTop += scroller.scrollTop + 30 // 增加显示更多空间
+        // scroller.style.height = scrollerHeight - 30 + 'px'
       }
     }
   },
@@ -76,10 +80,6 @@ export default {
     innerHeader,
     innerBody,
     more
-  },
-  beforeRouteLeave (to, from, next) {
-    // this.CHANGE_SWITCH(true); //打开组件间跳转动画
-    next()
   }
 }
 </script>
