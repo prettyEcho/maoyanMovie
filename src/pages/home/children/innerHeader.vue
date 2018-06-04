@@ -26,7 +26,7 @@ export default {
   name: 'innerHeader',
   data () {
     return {
-      nav: [
+      nav: [ // 导航
         {
           name: '热映',
           mark: 'hot'
@@ -35,7 +35,7 @@ export default {
           name: '待映',
           mark: 'await'
         }
-      ] // 导航
+      ]
     }
   },
   computed: {

@@ -25,8 +25,8 @@ export default {
         {
           id: 2,
           title: '影院',
-          icon: 'theatre',
-          iconNow: 'theatre-now'
+          icon: 'theater',
+          iconNow: 'theater-now'
         },
         {
           id: 3,
@@ -88,11 +88,11 @@ export default {
       background: url('../../images/sprite.png') no-repeat 0 0;
       background-size: 280 / @rem 210 / @rem;
     }
-    .theatre {
+    .theater {
       background: url('../../images/sprite.png') no-repeat 0 -70 / @rem;
       background-size: 280 / @rem 210 / @rem;
     }
-    .theatre-now {
+    .theater-now {
       background: url('../../images/sprite.png') no-repeat -210 / @rem 0;
       background-size: 280 / @rem 210 / @rem;
     }

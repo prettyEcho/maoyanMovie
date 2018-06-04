@@ -22,6 +22,7 @@ export default {
     }
   },
   created () {
+    this.UPDATE_HOT_PAGEING({ offset: 0 }) // 更新hot列表开始位置
     this.CHANGE_SWITCH(true) // 打开组件切换动画
     this.CHANGE_TITLE('猫眼电影') // 改变标题
     this.hot()// 初始化hot
@@ -47,7 +48,8 @@ export default {
   methods: {
     ...mapMutations([
       'CHANGE_TITLE',
-      'CHANGE_SWITCH'
+      'CHANGE_SWITCH',
+      'UPDATE_HOT_PAGEING'
     ]),
     ...mapActions([
       'hot'

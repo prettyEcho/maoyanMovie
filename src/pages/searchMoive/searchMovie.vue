@@ -1,9 +1,12 @@
 <template>
   <section class="searchMovie">
+    <!-- 搜索框 -->
     <section class="btn-wrap">
-      <input type="text" class="search" autofocus placeholder="找影视剧、影院" v-model="keyword"><icon class="icon" type="search"></icon>
+      <input type="text" class="search" autofocus placeholder="找影视剧、影院" v-model="keyword">
+      <icon class="icon" type="search"></icon>
       <span class="cancel" @click="cancel">取消</span>
     </section>
+    <!-- 搜索框 -->
     <section class="body-wrap">
       <!--热门搜索-->
       <section class="hot-wrap">
@@ -12,7 +15,8 @@
       </section>
       <!--提示搜索-->
       <section v-if="point" class="point">
-        您要找的是不是<mark class="mark">{{point}}</mark>
+        您要找的是不是
+        <mark class="mark">{{point}}</mark>
       </section>
       <!--电影／电视剧-->
       <child-movie v-if="JSON.stringify(searchMovie) !== '{}'" :movie="searchMovie"></child-movie>
@@ -23,13 +27,12 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex'
-import {getHotSearch, searchKeyword} from '../../service/getData'
-import {Icon} from 'vux'
+import { mapState, mapMutations } from 'vuex'
+import { getHotSearch, searchKeyword } from '../../service/getData'
+import { Icon } from 'vux'
 import childMovie from './children/childMovie'
-import childTheater from './children/childTheater'
 
-export default{
+export default {
   name: 'searchMovie',
   data () {
     return {
@@ -70,8 +73,7 @@ export default{
   },
   components: {
     Icon,
-    childMovie,
-    childTheater
+    childMovie
   },
   watch: {
     keyword (newVal) {
@@ -93,73 +95,73 @@ export default{
 </script>
 
 <style lang="less" scoped>
-  @import "../../style/base";
+@import '../../style/base';
 
-  .searchMovie{
-    height: 100%;
-    background-color: @f5;
-    .btn-wrap{
-      position: fixed;
-      top: 130/@rem;
-      display: flex;
-      padding: 20/@rem 0 20/@rem 25/@rem;
+.searchMovie {
+  height: 100%;
+  background-color: @f5;
+  .btn-wrap {
+    position: fixed;
+    top: 130 / @rem;
+    display: flex;
+    padding: 20 / @rem 0 20 / @rem 25 / @rem;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+    z-index: 1000;
+    .search {
+      width: 905 / @rem;
+      height: 80 / @rem;
+      padding-left: 80 / @rem;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+      box-shadow: 0 0 1px rgba(107, 102, 102, 0.33);
+    }
+    .cancel {
+      width: 150 / @rem;
+      height: 80 / @rem;
+      line-height: 80 / @rem;
+      text-align: center;
+      color: @orange;
+      font-size: 40 / @rem;
+    }
+    .icon {
+      position: absolute;
+      left: 40 / @rem;
+      top: 40 / @rem;
+      font-size: 40 / @rem;
+    }
+  }
+  .hot-wrap {
+    padding: 47 / @rem 0 8 / @rem 35 / @rem;
+    background-color: #fff;
+    .title {
+      padding: 18 / @rem 0;
+      color: #858585;
+    }
+    .movie {
+      margin: 22 / @rem 30 / @rem 22 / @rem 0;
+      padding: 20 / @rem 25 / @rem;
+      border: 0;
+      background-color: @f5;
+    }
+  }
+  .body-wrap {
+    margin-top: 130 / @rem;
+    .point {
+      margin-bottom: 25 / @rem;
+      padding-left: 35 / @rem;
+      height: 116 / @rem;
+      line-height: 116 / @rem;
       border-bottom: 1px solid #e5e5e5;
-      background-color: #fff;
-      z-index: 1000;
-      .search{
-        width: 905/@rem;
-        height: 80/@rem;
-        padding-left: 80/@rem;
-        border: 1px solid #e5e5e5;
-        border-radius: 4px;
-        box-shadow: 0 0 1px rgba(107, 102, 102, 0.33);
-      }
-      .cancel{
-        width: 150/@rem;
-        height: 80/@rem;
-        line-height: 80/@rem;
-        text-align: center;
+      color: #858585;
+      font-size: 38 / @rem;
+      .mark {
+        padding: 2px;
         color: @orange;
-        font-size: 40/@rem;
-      }
-      .icon{
-        position: absolute;
-        left: 40/@rem;
-        top: 40/@rem;
-        font-size: 40 / @rem;
-      }
-    }
-    .hot-wrap{
-      padding: 47/@rem 0 8/@rem 35/@rem ;
-      background-color: #fff;
-      .title{
-        padding: 18/@rem 0;
-        color: #858585;
-      }
-      .movie{
-        margin: 22/@rem 30/@rem 22/@rem 0;
-        padding: 20/@rem 25/@rem;
-        border: 0;
-        background-color: @f5;
-      }
-    }
-    .body-wrap{
-      margin-top: 130/@rem;
-      .point{
-        margin-bottom: 25/@rem;
-        padding-left: 35/@rem;
-        height: 116/@rem;
-        line-height: 116/@rem;
-        border-bottom: 1px solid #e5e5e5;
-        color: #858585;
-        font-size: 38/@rem;
-        .mark{
-          padding: 2px;
-          color: @orange;
-          font-size: 38/@rem;
-          background-color: #ffeaf9;
-        }
+        font-size: 38 / @rem;
+        background-color: #ffeaf9;
       }
     }
   }
+}
 </style>
