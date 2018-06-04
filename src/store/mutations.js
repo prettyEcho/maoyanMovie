@@ -11,7 +11,10 @@ import {
   GET_CITIES,
   RECENT_CITIES,
   SEARCH_KEYWORD,
-  CHANGE_MOVIEID
+  CHANGE_MOVIEID,
+  UPDATE_LOCATE,
+  UPDATE_HOT_PAGEING,
+  UPDATE_COMING_PAGEING
 } from './mutation-types'
 
 export default {
@@ -128,5 +131,20 @@ export default {
   // 改变电影id
   [CHANGE_MOVIEID] (state, val) {
     state.movieId = val
+  },
+
+  // 改变locate
+  [UPDATE_LOCATE] (state, obj) {
+    Object.assign(state.locate, obj)
+  },
+
+  // 改变hot paging
+  [UPDATE_HOT_PAGEING] (state, obj) {
+    Object.assign(state.hot.paging, obj)
+  },
+
+  // coming paging
+  [UPDATE_COMING_PAGEING] (state, obj) {
+    Object.assign(state.coming.paging, obj)
   }
 }

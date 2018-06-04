@@ -68,8 +68,8 @@ export default {
     commit,
     state
   }) {
-    let start = state.coming.paging.offset,
-      end = state.coming.paging.offset + state.coming.paging.limit
+    let start = state.coming.paging.offset
+    let end = state.coming.paging.offset + state.coming.paging.limit
 
     let ids = state.coming.movieIds.slice(start, end).join(',')
 
