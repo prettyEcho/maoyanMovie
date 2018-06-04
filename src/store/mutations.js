@@ -34,7 +34,6 @@ export default {
   // 储存hot
   [GET_HOT] (state, val) {
     const json = JSON.parse(val)
-    console.log(json)
     state.hot.hot = state.hot.hot.concat(json.data.hot)
     state.hot.paging = json.data.paging
     state.hot.paging.offset += state.hot.paging.limit

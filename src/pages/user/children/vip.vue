@@ -1,6 +1,6 @@
 <template>
   <section>
-    <img src="item" v-for="item in imgs" v-if="length">
+    <img :src="item" v-for="item in imgs" v-if="length" :key="item.id">
     <p class="word" v-if="!length">空空如也</p>
   </section>
 </template>
@@ -37,11 +37,10 @@ export default {
 
 <style scoped lang="less">
 @import url('../../../style/base');
-.word{
-    padding-top: 10px;
-    font-size: 16px;
-    color: #d2baba;
-    text-align: center;
+.word {
+  padding-top: 10px;
+  font-size: 16px;
+  color: #d2baba;
+  text-align: center;
 }
-
 </style>

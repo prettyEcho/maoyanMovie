@@ -2,7 +2,7 @@
   <header>
     <nav class="nav">
       <ul class="wrap">
-        <li class="tab" :class="{active: item.name === navTitle}" v-for="item in nav">
+        <li class="tab" :class="{active: item.name === navTitle}" v-for="item in nav" :key="item.id">
           <router-link :to="{name: item.mark}">{{item.name}}</router-link>
         </li>
       </ul>

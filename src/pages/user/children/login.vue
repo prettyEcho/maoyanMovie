@@ -5,7 +5,7 @@
     </group>
 
     <group>
-      <x-input class="xbtn-height" title="密 码" name="password" placeholder="请输入密码"  @on-focus="foucs" @on-blur="blur" v-model="password"></x-input>
+      <x-input class="xbtn-height" title="密 码" name="password" placeholder="请输入密码" @on-focus="foucs" @on-blur="blur" v-model="password"></x-input>
     </group>
     <x-button class="xbtn" type="primary" @click.native="login">登录</x-button>
   </section>
@@ -54,8 +54,8 @@ export default {
       if (this.username && this.password) {
         Login(this.username, this.password).then(result => {
           let data = JSON.parse(result)
-          if (data.code == 1) {
-            this.$router.push({ path: '/user'})
+          if (data.code === 1) {
+            this.$router.push({ path: '/user' })
           } else {
             alert(data.msg)
           }
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../../../style/base";
+@import '../../../style/base';
 .xbtn {
   margin: 20px auto 0;
   width: 96%;
