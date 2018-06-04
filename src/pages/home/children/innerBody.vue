@@ -1,7 +1,7 @@
 <template>
   <section id="scroller" class="scroller">
     <ul id="scrollBody">
-      <li v-for="item in list" class="item" :key="item.id" @click="goDetail(item.id)">
+      <li v-for="item in list" class="item" :id="item.id" :key="item.id" @click="goDetail(item.id)">
         <p class="title" v-if="'comingTitle' in item">{{item.comingTitle}}</p>
         <section class="center">
           <h2 class="nm">{{item.nm}}
