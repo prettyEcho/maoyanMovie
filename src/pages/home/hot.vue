@@ -28,17 +28,18 @@ export default {
     this.hot()// 初始化hot
   },
   mounted () {
+    console.log('=========mounted')
     let scroller = document.querySelector('.hot-page')
-    scroller.removeEventListener('scroll', _.throttle(this.scroll, 300), false) // 取消事件监听
-    scroller.addEventListener('scroll', _.throttle(this.scroll, 300), false)
+    scroller.removeEventListener('scroll', this.throttle, false) // 取消事件监听
+    scroller.addEventListener('scroll', this.throttle, false)
     this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
   },
   updated () {
+    console.log('=========update')
     let scroller = document.querySelector('.hot-page')
-    scroller.removeEventListener('scroll', _.throttle(this.scroll, 300), false) // 取消事件监听
-    scroller.addEventListener('scroll', _.throttle(this.scroll, 300), false)
+    scroller.removeEventListener('scroll', this.throttle, false) // 取消事件监听
+    scroller.addEventListener('scroll', this.throttle, false)
     this.moreFlag = false // 隐藏加载更多...
-    // scroller.style.height = parseFloat(getStyle(scroller).height) + 30 + 'px' // 取消显示更多空间
   },
   computed: {
     ...mapState({
@@ -74,8 +75,10 @@ export default {
         this.hot() // 加载更多数据
         this.moreFlag = true // 显示加载更多...
         scroller.scrollTop += scroller.scrollTop + 30 // 增加显示更多空间
-        // scroller.style.height = scrollerHeight - 30 + 'px'
       }
+    },
+    throttle () {
+      _.throttle(this.scroll, 800, { 'trailing': true })() // 节流
     }
   },
   components: {
