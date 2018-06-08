@@ -14,7 +14,8 @@ import {
   CHANGE_MOVIEID,
   UPDATE_LOCATE,
   UPDATE_HOT_PAGEING,
-  UPDATE_COMING_PAGEING
+  UPDATE_COMING_PAGEING,
+  UPDATE_CINEMA_OFFSET
 } from './mutation-types'
 
 export default {
@@ -146,5 +147,10 @@ export default {
   // coming paging
   [UPDATE_COMING_PAGEING] (state, obj) {
     Object.assign(state.coming.paging, obj)
+  },
+
+  // cinema offset
+  [UPDATE_CINEMA_OFFSET] (state, val) {
+    state.cinemaOffset = val
   }
 }

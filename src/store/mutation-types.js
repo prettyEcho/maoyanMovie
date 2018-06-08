@@ -14,3 +14,4 @@ export const CHANGE_MOVIEID = 'CHANGE_MOVIEID' // 电影id
 export const UPDATE_LOCATE = 'UPDATE_LOCATE' // 更新本地信息
 export const UPDATE_HOT_PAGEING = 'UPDATE_HOT_PAGEING' // 更新hot paging信息
 export const UPDATE_COMING_PAGEING = 'UPDATE_COMING_PAGEING' // 更新coming paging信息
+export const UPDATE_CINEMA_OFFSET = 'UPDATE_CINEMA_OFFSET' // 更新cinema list offset
