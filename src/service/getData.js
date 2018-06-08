@@ -213,11 +213,11 @@ export const GetCinemas = (cityId, limit = 12, offset) => getJson({
 })
 
 /**
- * 获取电影票房
- * https://wx.maoyan.com/hostproxy/mmdb/movie/1208942/feature/v1/mbox.json
+ * 搜索电影院
+ * https://wx.maoyan.com/hostproxy/mmdb/search/integrated/keyword/list.json?keyword=%E5%A4%A7%E5%9C%B0&almtype=1&iscorrected=false&stype=2&ci=10&lng=116.41384&lat=39.949863
  * 参数：
- *   id: 电影id
+ *   cityId: cid,
  */
-export const GetMBx = (id) => getJson({
-  url: `${phost}/mmdb/movie/${id}/feature/v1/mbox.json`
+export const SearchCinema = (cityId, keyword) => getJson({
+  url: `${phost}/hostproxy/mmdb/search/integrated/keyword/list.json?keyword=${keyword}&almtype=1&iscorrected=false&stype=2&ci=${cityId}`
 })
