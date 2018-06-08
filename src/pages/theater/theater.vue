@@ -8,7 +8,7 @@
         </div>
         <!-- 城市选择 -->
         <!-- 搜索框 -->
-        <section class="theater-search">
+        <section class="theater-search" @click="goSearch">
           <input type="text" class="search" placeholder="找影院" disabled>
           <icon class="icon" type="search"></icon>
         </section>
@@ -16,7 +16,7 @@
       </section>
       <!-- 影院列表 -->
       <ul class="theater-list">
-        <li class="theater-item" v-for="item in cinemas" :key="item.id">
+        <li class="theater-item" v-for="item in cinemas" :key="item.id" @click="goDetail(item)">
           <h5 class="theater-name">
             {{item.nm}}
             <span class="theater-sellPrice">{{item.sellPrice}}</span>
@@ -65,7 +65,8 @@ export default {
   methods: {
     ...mapMutations([
       'CHANGE_TITLE',
-      'UPDATE_CINEMA_OFFSET'
+      'UPDATE_CINEMA_OFFSET',
+      'UPDATE_CINEMA_ID'
     ]),
     scroll () {
       let scroller = document.querySelector('.theater')
@@ -98,6 +99,13 @@ export default {
     },
     throttle () {
       _.throttle(this.scroll, 800, { 'trailing': true })() // 节流
+    },
+    goSearch () {
+      this.$router.push({ name: 'searchTheater' })
+    },
+    goDetail (item) {
+      this.UPDATE_CINEMA_ID(item.id)
+      this.$router.push({ name: 'theaterDetail' })
     }
   },
   created () {

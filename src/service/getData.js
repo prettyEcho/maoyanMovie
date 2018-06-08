@@ -217,7 +217,40 @@ export const GetCinemas = (cityId, limit = 12, offset) => getJson({
  * https://wx.maoyan.com/hostproxy/mmdb/search/integrated/keyword/list.json?keyword=%E5%A4%A7%E5%9C%B0&almtype=1&iscorrected=false&stype=2&ci=10&lng=116.41384&lat=39.949863
  * 参数：
  *   cityId: cid,
+ *   keyword: 搜索关键词
  */
 export const SearchCinema = (cityId, keyword) => getJson({
   url: `${phost}/hostproxy/mmdb/search/integrated/keyword/list.json?keyword=${keyword}&almtype=1&iscorrected=false&stype=2&ci=${cityId}`
+})
+
+/**
+ * 电影院电影详情
+ * https://wx.maoyan.com/hostproxy/mmcs/show/v2/cinema/shows.json?cinemaId=117&ci=10&uuid=1A6E888B4A4B29B16FBA1299108DBE9CD47DBF5B6DDEF3614D607643E4DEA3CA&channelId=40000&userid=63866329
+ * 参数：
+ *   cityId: cid,
+ *   cinemaId: 电影id
+ */
+export const CinemaMovies = (cinemaId, cityId) => getJson({
+  url: `${phost}/hostproxy/mmcs/show/v2/cinema/shows.json?cinemaId=${cinemaId}&ci=${cityId}&channelId=40000`
+})
+
+/**
+ * 电影院电影详情2
+ * https://wx.maoyan.com/hostproxy/mmcs/cinema/v0/cinema.json?cinemaId=24166&channelId=40000
+ * 参数：
+ *   cinemaId: 电影id
+ */
+export const CinemaAddr = (cinemaId) => getJson({
+  url: `${phost}/hostproxy/mmcs/cinema/v0/cinema.json?cinemaId=${cinemaId}&channelId=40000`
+})
+
+/**
+ * 电影院goods
+ * https://wx.maoyan.com/hostproxy/goods/queryDealList.json?cinemaId=117&channel=12&channelId=40000&uuid=1A6E888B4A4B29B16FBA1299108DBE9CD47DBF5B6DDEF3614D607643E4DEA3CA&ci=10&userid=63866329
+ * 参数：
+ *   cityId: cid,
+ *   cinemaId: 电影id
+ */
+export const CinemaGoods = (cinemaId, cityId) => getJson({
+  url: `${phost}/hostproxy/goods/queryDealList.json?cinemaId=${cinemaId}&channel=12&channelId=40000&ci=${cityId}`
 })

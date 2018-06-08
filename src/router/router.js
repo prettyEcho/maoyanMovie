@@ -15,6 +15,8 @@ const Vip = r => require.ensure([], () => r(require('../pages/user/children/vip'
 const Wish = r => require.ensure([], () => r(require('../pages/user/children/wish'), 'user'))
 const SearchMovie = r => require.ensure([], () => r(require('../pages/searchMoive/searchMovie'), 'searchMovie'))
 const Theater = r => require.ensure([], () => r(require('../pages/theater/theater'), 'theater'))
+const SearchTheater = r => require.ensure([], () => r(require('../pages/theater/searchTheater'), 'theater'))
+const TheaterDetail = r => require.ensure([], () => r(require('../pages/theater/theaterDetail'), 'theater'))
 const Article = r => require.ensure([], () => r(require('../pages/article/article'), 'article'))
 
 Vue.use(Router) // 使用Router
@@ -90,7 +92,8 @@ const routes = [
     }
 
     ]
-  }, {
+  },
+  {
     path: '/searchMovie',
     name: 'searchMovie',
     component: SearchMovie,
@@ -102,6 +105,16 @@ const routes = [
     path: '/theater',
     name: 'theater',
     component: Theater
+  },
+  {
+    path: '/searchTheater',
+    name: 'searchTheater',
+    component: SearchTheater
+  },
+  {
+    path: '/theaterDetail',
+    name: 'theaterDetail',
+    component: TheaterDetail
   },
   {
     path: '/article',

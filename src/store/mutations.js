@@ -15,7 +15,8 @@ import {
   UPDATE_LOCATE,
   UPDATE_HOT_PAGEING,
   UPDATE_COMING_PAGEING,
-  UPDATE_CINEMA_OFFSET
+  UPDATE_CINEMA_OFFSET,
+  UPDATE_CINEMA_ID
 } from './mutation-types'
 
 export default {
@@ -152,5 +153,10 @@ export default {
   // cinema offset
   [UPDATE_CINEMA_OFFSET] (state, val) {
     state.cinemaOffset = val
+  },
+
+  // cinema id
+  [UPDATE_CINEMA_ID] (state, val) {
+    state.cinemaId = val
   }
 }

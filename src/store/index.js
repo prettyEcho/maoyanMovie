@@ -61,7 +61,8 @@ const state = {
   searchTheater: {}, // 搜索关键词电影院结果
   point: '', // 正确关键词提示
   movieId: '', // 电影id
-  cinemaOffset: 0 // 电影院列表开始位置
+  cinemaOffset: 0, // 电影院列表开始位置
+  cinemaId: 0 // 电影院id
 }
 
 export default new Vuex.Store({

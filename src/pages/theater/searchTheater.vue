@@ -9,7 +9,7 @@
     <!-- 搜索框 -->
     <!-- 搜索结果 -->
     <ul class="theater-list">
-      <li class="theater-item" v-for="item in list" :key="item.id">
+      <li class="theater-item" v-for="item in list" :key="item.id" @click="goDetail(item)">
         <h5 class="theater-name">
           {{item.nm}}
           <span class="theater-sellPrice">{{item.sellPrice}}</span>
@@ -44,10 +44,15 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'CHANGE_TITLE'
+      'CHANGE_TITLE',
+      'UPDATE_CINEMA_ID'
     ]),
     cancel () {
       this.keyword = ''
+    },
+    goDetail (item) {
+      this.UPDATE_CINEMA_ID(item.id)
+      this.$router.push({ name: 'theaterDetail' })
     }
   },
   created () {
