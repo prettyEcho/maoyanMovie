@@ -28,18 +28,14 @@ export default {
     this.hot()// 初始化hot
   },
   mounted () {
-    console.log('=========mounted')
     let scroller = document.querySelector('.hot-page')
-    scroller.removeEventListener('scroll', this.throttle, false) // 取消事件监听
-    scroller.addEventListener('scroll', this.throttle, false)
+    scroller.addEventListener('scroll', _.throttle(this.scroll, 500, { 'trailing': true }), false)
     this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
   },
   updated () {
-    console.log('=========update')
-    let scroller = document.querySelector('.hot-page')
-    scroller.removeEventListener('scroll', this.throttle, false) // 取消事件监听
-    scroller.addEventListener('scroll', this.throttle, false)
-    this.moreFlag = false // 隐藏加载更多...
+    this.$nextTick(() => {
+      this.moreFlag = false // 隐藏加载更多...
+    })
   },
   computed: {
     ...mapState({
@@ -55,7 +51,7 @@ export default {
     ...mapActions([
       'hot'
     ]),
-    scroll () { // 加载更多
+    scroll () {
       let scroller = document.querySelector('.hot-page')
       let scrollBody = document.querySelector('#scrollBody')
 
@@ -75,11 +71,8 @@ export default {
       if (disT <= 0 && this.hotMore) {
         this.hot() // 加载更多数据
         this.moreFlag = true // 显示加载更多...
-        scroller.scrollTop += scroller.scrollTop + 30 // 增加显示更多空间
+        // scroller.scrollTop += scroller.scrollTop + 60 // 增加显示更多空间
       }
-    },
-    throttle () {
-      _.throttle(this.scroll, 800, { 'trailing': true })() // 节流
     }
   },
   components: {

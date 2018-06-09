@@ -1,13 +1,17 @@
 <template>
   <div style="height: 100%">
     <animation v-if="loading"></animation>
+    <!-- body -->
     <view-box v-if="!loading" class="body" ref="viewBox">
       <m-header slot="header" :myTitle="myTitle"></m-header>
       <transition name="home" mode="out-in">
-        <router-view v-if="!switchFlag"></router-view>
+        <keep-alive>
+          <router-view v-if="!switchFlag"></router-view>
+        </keep-alive>
       </transition>
       <m-footer slot="bottom"></m-footer>
     </view-box>
+    <!-- body -->
     <!-- 组建间切换 -->
     <div v-transfer-dom>
       <loading :show="switchFlag" :text="loadingText"></loading>
@@ -82,7 +86,7 @@ export default {
   height: 100%;
 }
 .weui-tab__panel {
-  padding-bottom: 318 / @rem !important;
+  padding-bottom: 180 / @rem !important;
 }
 
 .home-enter-active,
