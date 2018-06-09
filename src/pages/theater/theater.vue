@@ -97,9 +97,6 @@ export default {
         scroller.scrollTop += scroller.scrollTop + 30 // 增加显示更多空间
       }
     },
-    throttle () {
-      _.throttle(this.scroll, 800, { 'trailing': true })() // 节流
-    },
     goSearch () {
       this.$router.push({ name: 'searchTheater' })
     },
@@ -121,14 +118,12 @@ export default {
   },
   mounted () {
     let scroller = document.querySelector('.theater')
-    scroller.removeEventListener('scroll', this.throttle, false) // 取消事件监听
-    scroller.addEventListener('scroll', this.throttle, false)
+    scroller.addEventListener('scroll', _.throttle(this.scroll, 500, { 'trailing': true }), false)
   },
   updated () {
-    let scroller = document.querySelector('.theater')
-    scroller.removeEventListener('scroll', this.throttle, false) // 取消事件监听
-    scroller.addEventListener('scroll', this.throttle, false)
-    this.moreFlag = false // 隐藏加载更多...
+    this.$nextTick(() => {
+      this.moreFlag = false // 隐藏加载更多...
+    })
   },
   components: {
     Icon,
