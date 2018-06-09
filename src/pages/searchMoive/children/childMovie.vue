@@ -39,7 +39,6 @@ export default {
           i.showst = [i.sc, '分']
         }
       }
-      console.log(this.movie.list)
       return this.movie.list
     }
   }
