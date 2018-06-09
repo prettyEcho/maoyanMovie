@@ -15,7 +15,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import { CinemaMovies, CinemaGoods, CinemaAddr } from '../../service/getData'
+import { CinemaMovies, CinemaAddr } from '../../service/getData'
 
 export default {
   name: 'search-theater',

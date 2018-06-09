@@ -1,19 +1,20 @@
 export default function getJson (options) {
   let defaults = { // 默认属性
-      type: 'get',
-      url: '',
-      data: ''
-    },
-    config = { // 设置初始属性
-      ...defaults,
-      ...options
-    }
+    type: 'get',
+    url: '',
+    data: ''
+  }
+  let config = { // 设置初始属性
+    ...defaults,
+    ...options
+  }
 
   return new Promise((resolve, reject) => {
     let xhr = null
     try {
       xhr = new XMLHttpRequest()
     } catch (e) {
+      // eslint-disable-next-line
       xhr = new ActiveXObject('Microsoft.XMLHTTP')
     }
     // get数据准备

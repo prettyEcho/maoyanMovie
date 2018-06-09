@@ -25,7 +25,7 @@ log4js.configure({
     dbLogin: {
       type: 'file',
       filename: path.resolve(__dirname, '../logs/login.log')
-    },
+    }
   },
   categories: {
     err: {
@@ -38,15 +38,15 @@ log4js.configure({
     }
   },
   pm2: true
-});
+})
 
-const eLogger = log4js.getLogger('dbErr');
-const lLogger = log4js.getLogger('dbLogin');
+const eLogger = log4js.getLogger('dbErr')
+const lLogger = log4js.getLogger('dbLogin')
 
 // 注册and登录
 router.get('/login', (req, res, next) => {
-  const username = req.query.username || '';
-  const password = req.query.password || '';
+  const username = req.query.username || ''
+  const password = req.query.password || ''
 
   // 条件判断
   if (!username) {
@@ -70,11 +70,11 @@ router.get('/login', (req, res, next) => {
   }).spread((user, created) => {
     // 注册
     if (created) {
-      req.session.username = user.dataValues.username;
-      res.cookie('username', user.dataValues.username, { maxAge: 18000000 });
+      req.session.username = user.dataValues.username
+      res.cookie('username', user.dataValues.username, { maxAge: 18000000 })
 
       // log
-      lLogger.info(`${username} is register success`);
+      lLogger.info(`${username} is register success`)
 
       res.send({
         code: 1,
@@ -85,11 +85,11 @@ router.get('/login', (req, res, next) => {
 
     // 登录
     if (user.dataValues.password === password) {
-      req.session.username = user.dataValues.username;
-      res.cookie('username', user.dataValues.username, { maxAge: 18000000 });  // 5小时
+      req.session.username = user.dataValues.username
+      res.cookie('username', user.dataValues.username, { maxAge: 18000000 })  // 5小时
 
       // log
-      lLogger.info(`${username} is login success`);
+      lLogger.info(`${username} is login success`)
 
       res.send({
         code: 1,
@@ -99,7 +99,7 @@ router.get('/login', (req, res, next) => {
     }
 
     // log
-    lLogger.error(`${username} is logining, but password:${password} is error`);
+    lLogger.error(`${username} is logining, but password:${password} is error`)
 
     res.send({
       code: 2,
@@ -111,7 +111,7 @@ router.get('/login', (req, res, next) => {
 
 // 注销
 router.get('/logout', (req, res, next) => {
-  let username = req.session.username;
+  let username = req.session.username
   if (!username) {
     res.send({
       code: 0,
@@ -121,14 +121,14 @@ router.get('/logout', (req, res, next) => {
   }
 
   // 删除cookie
-  delete req.cookies.username;
-  res.cookie('username', '', { maxAge: 18000000 });
+  delete req.cookies.username
+  res.cookie('username', '', { maxAge: 18000000 })
 
   //删除session
-  delete req.session.username;
+  delete req.session.username
 
   // log
-  lLogger.info(`${username} is logout success`);
+  lLogger.info(`${username} is logout success`)
 
   res.send({
     code: 1,
@@ -165,10 +165,10 @@ router.get('/getOrder', (req, res, next) => {
     })
     return res.end()
   }).catch(err => {
-    debug(err);
+    debug(err)
 
     // log
-    eLogger.error(`${username} get Order`);
+    eLogger.error(`${username} get Order`)
 
     res.send({
       code: 0,
@@ -200,24 +200,24 @@ router.get('/addOrder', (req, res, next) => {
     }
 
     // log
-    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`);
+    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`)
 
     res.send({
       code: 2,
       msg: '上传数据不正确'
     })
-    return res.end();
+    return res.end()
   }).catch(err => {
-    debug(err);
+    debug(err)
 
     // log
-    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`);
+    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`)
 
     res.send({
       code: 2,
       msg: '上传数据不正确'
     })
-    return res.end();
+    return res.end()
   })
 })
 
@@ -309,7 +309,7 @@ router.get('/getWish', (req, res, next) => {
     })
     return res.end()
   }).catch(err => {
-    debug(err);
+    debug(err)
     res.send({
       code: 0,
       msg: '服务器错误'
@@ -340,24 +340,24 @@ router.get('/addWish', (req, res, next) => {
     }
 
     // log
-    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`);
+    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`)
 
     res.send({
       code: 2,
       msg: '上传数据不正确'
     })
-    return res.end();
+    return res.end()
   }).catch(err => {
-    debug(err);
+    debug(err)
 
     // log
-    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`);
+    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`)
 
     res.send({
       code: 2,
       msg: '上传数据不正确'
     })
-    return res.end();
+    return res.end()
   })
 })
 
@@ -389,7 +389,7 @@ router.get('/getViewed', (req, res, next) => {
     })
     return res.end()
   }).catch(err => {
-    debug(err);
+    debug(err)
     res.send({
       code: 0,
       msg: '服务器错误'
@@ -420,24 +420,24 @@ router.get('/addViewed', (req, res, next) => {
     }
 
     // log
-    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`);
+    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`)
 
     res.send({
       code: 2,
       msg: '上传数据不正确'
     })
-    return res.end();
+    return res.end()
   }).catch(err => {
-    debug(err);
+    debug(err)
 
     // log
-    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`);
+    eLogger.error(`${username} add Order, data is ${JSON.stringify(req.query)}`)
 
     res.send({
       code: 2,
       msg: '上传数据不正确'
     })
-    return res.end();
+    return res.end()
   })
 })
 

@@ -6,14 +6,6 @@ import {
   getComingMore
 } from '../service/getData'
 
-import {
-  GET_LOCATE,
-  GET_HOT,
-  GET_WISH,
-  GET_COMING,
-  GET_COMING_MORE
-} from './mutation-types'
-
 export default {
   // 获取当前城市
   async locate ({

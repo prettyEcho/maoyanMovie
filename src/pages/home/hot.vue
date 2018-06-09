@@ -71,6 +71,7 @@ export default {
       disT = Math.round(bodyHeight - scrollerHeight - scrollerTop) // 高度差
       if (disT > 0) { return }
       // 判断是否到底
+
       if (disT <= 0 && this.hotMore) {
         this.hot() // 加载更多数据
         this.moreFlag = true // 显示加载更多...
