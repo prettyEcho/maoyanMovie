@@ -2,7 +2,7 @@
   <section class="searchMovie">
     <!-- 搜索框 -->
     <section class="btn-wrap">
-      <input type="text" class="search" autofocus placeholder="找影视剧、影院" v-model="keyword">
+      <input type="text" class="search" autofocus placeholder="找影视剧、影院" v-model="keyword" @keyup="debounce">
       <icon class="icon" type="search"></icon>
       <span class="cancel" @click="cancel">取消</span>
     </section>
@@ -31,6 +31,7 @@ import { mapState, mapMutations } from 'vuex'
 import { getHotSearch, searchKeyword } from '../../service/getData'
 import { Icon } from 'vux'
 import childMovie from './children/childMovie'
+const _ = require('lodash')
 
 export default {
   name: 'searchMovie',
@@ -69,27 +70,20 @@ export default {
     ]),
     cancel () {
       this.keyword = ''
-    }
+    },
+    debounce: _.debounce(function () {
+      searchKeyword(this.keyword, this.locate.ci)
+        .then((val) => {
+          this.SEARCH_KEYWORD(val)
+        })
+        .catch((e) => {
+          console.error(e)
+        })
+    }, 500)
   },
   components: {
     Icon,
     childMovie
-  },
-  watch: {
-    keyword (newVal) {
-      if (newVal) {
-        // 搜索关键词
-        setTimeout(() => {
-          searchKeyword(newVal, this.locate.ci)
-            .then((val) => {
-              this.SEARCH_KEYWORD(val)
-            })
-            .catch((e) => {
-              console.error(e)
-            })
-        }, 500)
-      }
-    }
   }
 }
 </script>

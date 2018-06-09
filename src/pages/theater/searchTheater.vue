@@ -2,7 +2,7 @@
   <section class="search-theater">
     <!-- 搜索框 -->
     <section class="btn-wrap">
-      <input type="text" class="search" autofocus placeholder="找影院" v-model="keyword">
+      <input type="text" class="search" autofocus placeholder="找影院" v-model="keyword" @keyup="debounce">
       <icon class="icon" type="search"></icon>
       <span class="cancel" @click="cancel">取消</span>
     </section>
@@ -28,6 +28,7 @@
 import { mapState, mapMutations } from 'vuex'
 import { Icon } from 'vux'
 import { SearchCinema } from '../../service/getData'
+const _ = require('lodash')
 
 export default {
   name: 'search-theater',
@@ -53,24 +54,19 @@ export default {
     goDetail (item) {
       this.UPDATE_CINEMA_ID(item.id)
       this.$router.push({ name: 'theaterDetail' })
-    }
+    },
+    debounce: _.debounce(function () {
+      SearchCinema(this.locate.ci, this.keyword).then(res => {
+        let { data } = JSON.parse(res)
+        this.list = data[0].list
+      })
+    }, 500)
   },
   created () {
     this.CHANGE_TITLE('影院') // 更改标题
   },
   components: {
     Icon
-  },
-  watch: {
-    keyword (newVal) {
-      if (newVal) {
-        // 搜索关键词
-        SearchCinema(this.locate.ci, this.keyword).then(res => {
-          let { data } = JSON.parse(res)
-          this.list = data[0].list
-        })
-      }
-    }
   }
 }
 </script>
