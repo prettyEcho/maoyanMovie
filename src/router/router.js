@@ -119,6 +119,9 @@ const routes = [
   {
     path: '/article',
     name: 'article',
+    meta: {
+      noCache: true
+    },
     component: Article
   }
 ]
