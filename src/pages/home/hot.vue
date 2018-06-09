@@ -30,7 +30,9 @@ export default {
   mounted () {
     let scroller = document.querySelector('.hot-page')
     scroller.addEventListener('scroll', _.throttle(this.scroll, 500, { 'trailing': true }), false)
-    this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
+    this.$nextTick(() => {
+      this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
+    })
   },
   updated () {
     this.$nextTick(() => {

@@ -27,7 +27,9 @@ export default {
     this.UPDATE_COMING_PAGEING({ offset: 10 }) // 更新coming加载更多列表开始位置
     this.wish() // 获取最受欢迎
     this.CHANGE_TITLE('猫眼电影') // 改变标题
-    this.CHANGE_SWITCH(true) // 打开组件间跳转动画
+    this.$nextTick(() => {
+      this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
+    })
     this.coming() // 获取待映第一屏
   },
   mounted () {

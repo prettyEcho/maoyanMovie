@@ -199,7 +199,6 @@ export default {
   beforeCreate () {
     // fetch data and init reactivity
     let movieId = this.$route.query.id
-
     // 演员表
     GetCelebrities(movieId).then((res) => {
       let { data } = JSON.parse(res)

@@ -32,7 +32,7 @@ export default {
         slidesPerView: 4,
         spaceBetween: 12,
         on: {
-          touchEnd: (event) => {
+          click: (event) => {
             let movieId = event.target.parentNode.id
             this.goDetail(movieId)
           }

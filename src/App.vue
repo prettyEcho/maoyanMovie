@@ -4,11 +4,16 @@
     <!-- body -->
     <view-box v-if="!loading" class="body" ref="viewBox">
       <m-header slot="header" :myTitle="myTitle"></m-header>
+      <!-- cache -->
       <transition name="home" mode="out-in">
-        <keep-alive>
+        <keep-alive v-if="!noCache">
           <router-view v-if="!switchFlag"></router-view>
         </keep-alive>
       </transition>
+      <!-- cache -->
+      <!-- no-cahce -->
+      <router-view v-if="noCache"></router-view>
+      <!-- no-cahce -->
       <m-footer slot="bottom"></m-footer>
     </view-box>
     <!-- body -->
@@ -41,7 +46,10 @@ export default {
       switchFlag: state => state.switch, // 切换loading标识
       myTitle: state => state.title, // 标题
       loading: state => state.loading // 开机动画
-    })
+    }),
+    noCache () {
+      return Reflect.has(this.$route.meta, 'noCache') ? this.$route.meta.noCache : false
+    }
   },
   methods: {
     ...mapActions([
@@ -85,7 +93,15 @@ export default {
 #app {
   height: 100%;
 }
+
+.vux-header {
+  position: fixed !important;
+  top: 0;
+  width: 100% !important;
+}
+
 .weui-tab__panel {
+  padding-top: 138 / @rem !important;
   padding-bottom: 180 / @rem !important;
 }
 

@@ -66,7 +66,8 @@ export default {
     ...mapMutations([
       'CHANGE_TITLE',
       'UPDATE_CINEMA_OFFSET',
-      'UPDATE_CINEMA_ID'
+      'UPDATE_CINEMA_ID',
+      'CHANGE_SWITCH'
     ]),
     scroll () {
       let scroller = document.querySelector('.theater')
@@ -106,6 +107,7 @@ export default {
     }
   },
   created () {
+    this.CHANGE_SWITCH(true) // 打开组件间跳转动画
     this.UPDATE_CINEMA_OFFSET(0) // 初始化theater列表开始位置
     this.CHANGE_TITLE('影院') // 更改标题
     GetCinemas(this.locate.ci, 12, this.offset).then(res => {
@@ -117,6 +119,9 @@ export default {
     })
   },
   mounted () {
+    this.$nextTick(() => {
+      this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
+    })
     let scroller = document.querySelector('.theater')
     scroller.addEventListener('scroll', _.throttle(this.scroll, 500, { 'trailing': true }), false)
   },
