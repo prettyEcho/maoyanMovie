@@ -2,7 +2,7 @@
   <div class="hot-page">
     <inner-header></inner-header>
     <inner-body></inner-body>
-    <more v-if="moreFlag"></more>
+    <more v-if="hotMore"></more>
   </div>
 </template>
 
@@ -18,7 +18,6 @@ export default {
   name: 'hot',
   data () {
     return {
-      moreFlag: false // 加载更多
     }
   },
   created () {
@@ -32,11 +31,6 @@ export default {
     scroller.addEventListener('scroll', _.throttle(this.scroll, 500, { 'trailing': true }), false)
     this.$nextTick(() => {
       this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
-    })
-  },
-  updated () {
-    this.$nextTick(() => {
-      this.moreFlag = false // 隐藏加载更多...
     })
   },
   computed: {
@@ -72,8 +66,6 @@ export default {
 
       if (disT <= 0 && this.hotMore) {
         this.hot() // 加载更多数据
-        this.moreFlag = true // 显示加载更多...
-        // scroller.scrollTop += scroller.scrollTop + 60 // 增加显示更多空间
       }
     }
   },

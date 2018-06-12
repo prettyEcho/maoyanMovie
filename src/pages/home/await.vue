@@ -3,7 +3,7 @@
     <inner-header></inner-header>
     <recent></recent>
     <inner-body></inner-body>
-    <more v-if="moreFlag"></more>
+    <more v-if="awaitMore"></more>
   </div>
 </template>
 
@@ -20,7 +20,6 @@ export default {
   name: 'await',
   data () {
     return {
-      moreFlag: false // 加载更多
     }
   },
   created () {
@@ -36,11 +35,6 @@ export default {
     let scroller = document.querySelector('.await-page')
     scroller.addEventListener('scroll', _.throttle(this.scroll, 500, { 'trailing': true }), false)
     this.CHANGE_SWITCH(false) // 关闭组件间跳转动画
-  },
-  updated () {
-    this.$nextTick(() => {
-      this.moreFlag = false // 隐藏加载更多...
-    })
   },
   computed: {
     ...mapState({
@@ -76,8 +70,6 @@ export default {
       // 判断是否到底
       if (disT <= 0 && this.awaitMore) {
         this.comingMore() // 加载更多数据
-        this.moreFlag = true // 显示加载更多...
-        // scroller.scrollTop += scroller.scrollTop + 30 // 增加显示更多空间
       }
     }
   },

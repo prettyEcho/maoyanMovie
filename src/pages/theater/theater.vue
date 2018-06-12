@@ -34,7 +34,7 @@
       <!-- 影院列表 -->
     </section>
     <!-- more -->
-    <more v-if="moreFlag"></more>
+    <more v-if="hasMore"></more>
     <!-- more -->
   </section>
 </template>
@@ -52,7 +52,6 @@ export default {
   data () {
     return {
       cinemas: [], // cinemas list
-      moreFlag: false, // 加载更多
       hasMore: true // 是否还有更多
     }
   },
@@ -94,8 +93,6 @@ export default {
           this.hasMore = data.paging.hasMore
           this.UPDATE_CINEMA_OFFSET(offset) // 更新开始位置
         })
-        this.moreFlag = true // 显示加载更多...
-        scroller.scrollTop += scroller.scrollTop + 30 // 增加显示更多空间
       }
     },
     goSearch () {
@@ -124,11 +121,6 @@ export default {
     })
     let scroller = document.querySelector('.theater')
     scroller.addEventListener('scroll', _.throttle(this.scroll, 500, { 'trailing': true }), false)
-  },
-  updated () {
-    this.$nextTick(() => {
-      this.moreFlag = false // 隐藏加载更多...
-    })
   },
   components: {
     Icon,
