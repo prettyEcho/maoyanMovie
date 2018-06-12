@@ -4,12 +4,13 @@ const hbs = require('hbs')
 const path = require('path')
 const config = require('config')
 const favicon = require('serve-favicon')
+const history = require('connect-history-api-fallback')
 const debug = require('debug')('echo:app')
 
 const app = express();
 
 // favicon
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))) 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // session
 const session = require('express-session');
@@ -21,7 +22,7 @@ app.use(cookieParser());
 app.use(session({
   name: 'echo-session', // response和request中session id的名字
   secret: "echo", // 用来对session id相关的cookie进行签名
-  resave: false,  // 是否每次都重新保存会话，建议false
+  resave: false, // 是否每次都重新保存会话，建议false
   saveUninitialized: false, // 是否自动保存未初始化的会话，建议false
   cookie: {
     httpOnly: false
@@ -46,7 +47,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Cache-Control', 'Max-age=0');  // 强缓存
+  res.header('Cache-Control', 'Max-age=0'); // 强缓存
   next();
 })
 
@@ -56,21 +57,24 @@ app.use('/proxy', proxy)
 
 // mode router
 const mode = config.get('MODE');
-if( mode !== 'db' && mode !== 'file' ) {
+if (mode !== 'db' && mode !== 'file') {
   debug('please set the correct mode');
 }
 
-if( mode === 'db' ) {
+if (mode === 'db') {
   debug('you are using the database mode')
   const duser = require('./routes/duser')
   app.use('/duser', duser)
-}else if( mode === 'file' ) {
-  debug('you are using the file mode')  
+} else if (mode === 'file') {
+  debug('you are using the file mode')
   const fuser = require('./routes/fuser')
   app.use('/fuser', fuser)
 }
 
-
+// support spa history
+app.use(history({
+  logger: console.log.bind(console)
+}))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

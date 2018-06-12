@@ -5,8 +5,7 @@
   "author": "prettyEcho <15732029828@163.com>",
   "private": true,
   "scripts": {
-    "dev:front":
-      "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev:front": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --fix --ext .js,.vue src",
     "build": "node build/build.js",
@@ -16,6 +15,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "config": "^1.30.0",
+    "connect-history-api-fallback": "^1.5.0",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.1.4",
     "debug": "^3.1.0",
@@ -91,5 +91,9 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

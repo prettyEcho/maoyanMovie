@@ -21,111 +21,117 @@ const Article = r => require.ensure([], () => r(require('../pages/article/articl
 
 Vue.use(Router) // 使用Router
 
-const routes = [
+const routes = [{
+  path: '*',
+  component: {
+    template: `<div style="text-align: center; font-weight: bold; font-size: 50px;">No Found</div>`
+  }
+},
 
   // 当请求地址为空时，转移到hot页
-  {
-    path: '',
-    redirect: '/hot'
-  },
-  {
-    path: '/hot',
-    name: 'hot',
-    component: Hot,
-    meta: {
-      footerRequire: true
-    }
-  },
-  {
-    path: '/await',
-    name: 'await',
-    component: Await,
-    meta: {
-      footerRequire: true
-    }
-  },
-  {
-    path: '/city',
-    name: 'city',
-    component: City,
-    meta: {
-      footerRequire: false
-    }
-  },
-  {
-    path: '/user',
-    component: User,
-    children: [{
-      path: '',
-      name: 'main',
-      component: Main
-    },
-    {
-      path: 'login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: 'coupon',
-      name: 'coupon',
-      component: Coupon
-    },
-    {
-      path: 'order',
-      name: 'order',
-      component: Order
-    },
-    {
-      path: 'viewed',
-      name: 'viewed',
-      component: Viewed
-    },
-    {
-      path: 'wish',
-      name: 'wish',
-      component: Wish
-    },
-    {
-      path: 'vip',
-      name: 'vip',
-      component: Vip
-    }
-
-    ]
-  },
-  {
-    path: '/searchMovie',
-    name: 'searchMovie',
-    component: SearchMovie,
-    meta: {
-      footerRequire: false
-    }
-  },
-  {
-    path: '/theater',
-    name: 'theater',
-    component: Theater
-  },
-  {
-    path: '/searchTheater',
-    name: 'searchTheater',
-    component: SearchTheater
-  },
-  {
-    path: '/theaterDetail',
-    name: 'theaterDetail',
-    component: TheaterDetail
-  },
-  {
-    path: '/article',
-    name: 'article',
-    meta: {
-      noCache: true
-    },
-    component: Article
+{
+  path: '',
+  redirect: '/hot'
+},
+{
+  path: '/hot',
+  name: 'hot',
+  component: Hot,
+  meta: {
+    footerRequire: true
   }
+},
+{
+  path: '/await',
+  name: 'await',
+  component: Await,
+  meta: {
+    footerRequire: true
+  }
+},
+{
+  path: '/city',
+  name: 'city',
+  component: City,
+  meta: {
+    footerRequire: false
+  }
+},
+{
+  path: '/user',
+  component: User,
+  children: [{
+    path: '',
+    name: 'main',
+    component: Main
+  },
+  {
+    path: 'login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: 'coupon',
+    name: 'coupon',
+    component: Coupon
+  },
+  {
+    path: 'order',
+    name: 'order',
+    component: Order
+  },
+  {
+    path: 'viewed',
+    name: 'viewed',
+    component: Viewed
+  },
+  {
+    path: 'wish',
+    name: 'wish',
+    component: Wish
+  },
+  {
+    path: 'vip',
+    name: 'vip',
+    component: Vip
+  }
+
+  ]
+},
+{
+  path: '/searchMovie',
+  name: 'searchMovie',
+  component: SearchMovie,
+  meta: {
+    footerRequire: false
+  }
+},
+{
+  path: '/theater',
+  name: 'theater',
+  component: Theater
+},
+{
+  path: '/searchTheater',
+  name: 'searchTheater',
+  component: SearchTheater
+},
+{
+  path: '/theaterDetail',
+  name: 'theaterDetail',
+  component: TheaterDetail
+},
+{
+  path: '/article',
+  name: 'article',
+  meta: {
+    noCache: true
+  },
+  component: Article
+}
 ]
 
 export default new Router({
+  mode: 'history',
   routes: routes
 })
